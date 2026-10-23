@@ -17,6 +17,10 @@ class Config:
     data_dir: Path
     interests: str
 
+    @property
+    def db_path(self) -> Path:
+        return self.data_dir / "papers.db"
+
 
 def load_config(path: Path = ROOT / "config.toml") -> Config:
     with path.open("rb") as f:

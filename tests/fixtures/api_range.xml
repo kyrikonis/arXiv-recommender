@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/Ion7OxWSwjBJRfHeo5hMMKPeAPQ</id>
+  <title>arXiv Query: search_query=cat:gr-qc AND submittedDate:"202610010000 TO 202610020000"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-10-23T18:38:01Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=cat:gr-qc+AND+submittedDate:%22202610010000+TO+202610020000%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>27</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00844v2</id>
+    <title>Complexity study of the Hartle-Hawking state in JT gravity</title>
+    <updated>2026-10-08T06:03:29Z</updated>
+    <link href="https://arxiv.org/abs/2610.00844v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00844v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The Wigner function, in general, takes on negative values, and the amount of negativity in the Wigner function gives an operationally meaningful measure of the complexity of simulating the quantum state on a classical computer. In this paper, we study the growth of Wigner negativity of the Hartle-Hawking state of Jackiw-Teitelboim gravity under time evolution. We work in the gravitational length basis, at genus zero, and at high temperature, $β\ll 1$. Our main analytic result is simple: to leading order in $β$ the state is a Gaussian wavepacket of minimum uncertainty, sitting at rest at the turning point of the Liouville wall. Its Wigner function is therefore positive, and the negativity is $1+δ(β,t)$, where the correction $δ$ is smaller than any power of $β$. We show that $δ$ is an even function of time, so there is no linear growth at $t=0$, and that once the packet has reflected off the wall its leading-order evolution is a Clifford shear, which cannot change the negativity. We also numerically study the time evolution of the Wigner function and its negativity. We observe that $δ$ stays below $10^{-11}$ at $t=0$ and through the reflection, then rises slowly over a few tens of $β/π$, and then approaches a late-time value consistent with $δ_\infty(β) \simeq 0.08\, e^{-4.4/β}$ for $0.25 \le β\le 1$: the lower the temperature, the larger the late-time negativity. The exact survival amplitude $Z(β+it)/Z(β)$ fixes the spread complexity to order $t^4$, and it also fixes the seed-normalised Wigner diagnostic of our earlier work (arXiv:2607.04065, arXiv:2607.17346). We take this as evidence that the length basis is ideally suited for a dual, semi-classical description of the dynamics at genus zero. Beyond genus zero the length basis is overcomplete, and we make no statement about finite $e^{S_0}$.</summary>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T00:04:04Z</published>
+    <arxiv:comment>19 pages, 1 figure, 1 table</arxiv:comment>
+    <arxiv:primary_category term="hep-th"/>
+    <author>
+      <name>Ritam Basu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.00989v1</id>
+    <title>Effects of Poisson Isocurvature Perturbations on Induced Gravitational Waves</title>
+    <updated>2026-10-01T03:23:32Z</updated>
+    <link href="https://arxiv.org/abs/2610.00989v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.00989v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>A sudden transition from an early matter-dominated era to a radiation-dominated era provides a representative mechanism for enhancing induced gravitational waves (GWs). In the primordial black hole (PBH) evaporation scenario, discrete PBH number-density fluctuations naturally generate Poisson isocurvature perturbations. By evaluating the GWs induced by these perturbations through the sudden evaporation transition, we show how the full hierarchy of intrinsic non-Gaussian statistics of a Poisson isocurvature source enters the induced GW spectra. We find that the tensor power spectrum retains only the two-point correlations of the scalar source, while higher-order correlations first appear in the tensor bispectrum. We also find a nontrivial scale dependence in the relative amplitudes of different bispectrum configurations, which may provide additional information for distinguishing the discrete PBH scenario from other induced-GW mechanisms.</summary>
+    <category term="astro-ph.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T03:23:32Z</published>
+    <arxiv:comment>13 pages, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="astro-ph.CO"/>
+    <author>
+      <name>Zi-An Zhou</name>
+    </author>
+    <author>
+      <name>Cheng-Jun Fang</name>
+    </author>
+    <author>
+      <name>Zong-Kuan Guo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.03798v1</id>
+    <title>Dynamical thin shells in black hole ringdown</title>
+    <updated>2026-10-01T05:19:31Z</updated>
+    <link href="https://arxiv.org/abs/2610.03798v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.03798v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We study how a radially oscillating thin shell outside a black hole (BH) affects gravitational wave ringdown and derive matching conditions for polar and axial perturbations from the linearized Israel junction conditions on the moving worldtube. Periodic shell motion produces Floquet sidebands in the scattered wave. For a distant shell, the motion has little effect on the prompt ringdown and only weakly modifies the late time echoes. When the shell is closer to the BH, a replica of a long lived shell mode enters the incident frequency band, increasing the late time echo amplitude by roughly two orders of magnitude. We also identify an exceptional point where two polar modes coalesce and find the contribution of its second order pole in the late time waveform.</summary>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-01T05:19:31Z</published>
+    <arxiv:comment>36 pages, 9 figures</arxiv:comment>
+    <arxiv:primary_category term="gr-qc"/>
+    <author>
+      <name>Han-Wen Hu</name>
+    </author>
+    <author>
+      <name>Chen Lan</name>
+    </author>
+    <author>
+      <name>Zong-Kuan Guo</name>
+    </author>
+  </entry>
+</feed>

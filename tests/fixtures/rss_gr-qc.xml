@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>gr-qc updates on arXiv.org</title>
+    <link>http://rss.arxiv.org/rss/gr-qc</link>
+    <description>gr-qc updates on the arXiv.org e-print archive.</description>
+    <atom:link href="http://rss.arxiv.org/rss/gr-qc" rel="self" type="application/rss+xml"/>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Oct 2026 04:00:24 +0000</lastBuildDate>
+    <managingEditor>rss-help@arxiv.org</managingEditor>
+    <pubDate>Fri, 23 Oct 2026 00:00:00 -0400</pubDate>
+    <skipDays>
+      <day>Sunday</day>
+      <day>Saturday</day>
+    </skipDays>
+    <item>
+      <title>Flexible Proposal Distributions for Gravitational-Wave Population Inference with Gaussian Mixture Models</title>
+      <link>https://arxiv.org/abs/2610.30187</link>
+      <description>arXiv:2610.30187v1 Announce Type: new 
+Abstract: Population analyses of gravitational-wave (GW) sources use hierarchical Bayesian inference to constrain astrophysical models while accounting for selection effects. The likelihood is usually estimated by Monte Carlo integration over finite sets of event posterior samples and simulated injections. As catalogs grow, more samples are needed to control the Monte Carlo variance, but the available event samples are fixed by parameter estimation. Sharp population features can also lie in regions poorly sampled by the event posteriors. We fit Gaussian mixture models (GMMs) to the event posteriors and evaluate the likelihood by importance sampling with two proposals: an ensemble of event posteriors and a mixture of that ensemble with a fiducial population. Together with a GMM representation of detected injections, this allows additional samples to be drawn for both event and selection integrals. Increasing the sample count reduces Monte Carlo variance but leaves uncertainty from fitting the densities to finite training sets. In simulated catalogs, the GMM-based estimators show no detectable additional bias relative to the posterior-sample estimator; their calibration is comparable within the limitations of the tests. An application to GWTC-3 with a different mass model gives consistent results across the estimators. The method separates the numerical sampling budget from the original sample count, while requiring explicit checks of density-fit uncertainty and approximation error.</description>
+      <guid isPermaLink="false">oai:arXiv.org:2610.30187v1</guid>
+      <category>gr-qc</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 -0400</pubDate>
+      <arxiv:announce_type>new</arxiv:announce_type>
+      <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+      <dc:creator>Simon M. C. Yeung, Ignacio Maga\~na Hernandez, Jolien Creighton</dc:creator>
+    </item>
+    <item>
+      <title>Partial geometrization of dark matter in metric $f(R)$ gravity: Exact reconstruction and growth constraints</title>
+      <link>https://arxiv.org/abs/2610.30201</link>
+      <description>arXiv:2610.30201v1 Announce Type: new 
+Abstract: We ask what fraction of dark matter can be accounted for by the geometry of a stable metric $f(R)$ theory, requiring the expansion history to be exactly equal to that of the $\Lambda$CDM model. Only a fraction $\xi$ of dark matter clusters as dust, whereas $f(R)$ supplies the rest, as well as $\Lambda$. We show that the background reconstruction reduces to a linear equation for $F\equiv f_R$, whose solution is $F-1=(1-\xi)\,\Theta(a)$, with $\Theta$ independent of $\xi$: the departure from general relativity is exactly proportional to the geometrized fraction. We solve this equation in closed form in the matter$+\Lambda$ and radiation$+$matter eras: in both, the solution is an elementary particular solution plus two hypergeometric modes. Stability requires $F$ to decrease monotonically in time, so $F$ cannot take its general-relativity value $F=1$ both at early and at late times. The effective gravitational coupling $G/F$ therefore necessarily runs: between the radiation era and the de Sitter attractor, $F$ changes by at least $0.837\,(1-\xi)$. In all stable reconstructions but one, $F-1$ grows as $R^{1/3}$ at high curvature, i.e., in dense environments such as the Sun, and local tests of gravity exclude them. The surviving member has $F\to1$ at early times: it recovers general relativity at high curvature and attains the minimal running of $F$. Keeping the linear growth factor at $k=0.1\,h\,\mathrm{Mpc}^{-1}$ within $10\%$ of its $\Lambda$CDM value requires $1-\xi\lesssim10^{-3}$, the weakest bound among all stable reconstructions; keeping $\sigma_8$ within $3\%$ requires $1-\xi\lesssim5\times10^{-5}$. Growth-rate data from DESI DR1 and SDSS DR16 give $1-\xi\lesssim10^{-3}$--$10^{-2}$, and the Cassini bound gives $1-\xi\lesssim10^{-10}$. A smoothly evolving metric $f(R)$ background can therefore geometrize only a negligible fraction of dark matter.</description>
+      <guid isPermaLink="false">oai:arXiv.org:2610.30201v1</guid>
+      <category>gr-qc</category>
+      <category>astro-ph.CO</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 -0400</pubDate>
+      <arxiv:announce_type>new</arxiv:announce_type>
+      <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+      <dc:creator>Davide Campanella Galanti, Oliver F. Piattella</dc:creator>
+    </item>
+    <item>
+      <title>Impact of cosmic evolution on the gravitational wave spectrum from cosmic strings</title>
+      <link>https://arxiv.org/abs/2610.26652</link>
+      <description>arXiv:2610.26652v1 Announce Type: cross 
+Abstract: In the standard cosmological paradigm, the gravitational wave (GW) spectrum from a cosmic string network is well defined. However, early-Universe dynamics can significantly alter this relic signal. We systematically investigate how different new physics epochs in the radiation era--including extra relativistic degrees of freedom, early matter domination, intermediate vacuum domination, and kination--modify string network evolution and loop production. We find that a kination era enhances the stochastic GW signal, whereas the other scenarios suppress the signal to varying degrees. We also demonstrate that late-time dynamical dark energy has a negligible impact on the GW spectrum from cosmic strings.</description>
+      <guid isPermaLink="false">oai:arXiv.org:2610.26652v1</guid>
+      <category>hep-ph</category>
+      <category>astro-ph.CO</category>
+      <category>gr-qc</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 -0400</pubDate>
+      <arxiv:announce_type>cross</arxiv:announce_type>
+      <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+      <dc:creator>Xi-He Hu, Danny Marfatia, Ye-Ling Zhou</dc:creator>
+    </item>
+    <item>
+      <title>Molecular analogue for scalar dynamics in an AII metric</title>
+      <link>https://arxiv.org/abs/2511.11379</link>
+      <description>arXiv:2511.11379v2 Announce Type: replace 
+Abstract: Tachyons are hypothetical particles that propagate faster than light, yet they have never been observed in nature or in the laboratory. In this work, we introduce the $H_2^+$ molecule as an analogue for the dynamics of a spinless test particle interacting with the gravitational field generated by a tachyon. The tachyonic spacetime is modeled using an AII metric, and the problem is analyzed through the Klein--Gordon equation for a scalar field in this background. We compute the quasi-normal modes and the Hawking radiation spectrum associated with the system. By introducing a specific external potential --- defined precisely for this purpose and fine--tuned through a careful comparison of system constants --- we demonstrate that both the radial and angular components of a test particle's wave function can be effectively reproduced by the electronic dynamics within $H_2^+$. We thus propose a mathematical framework for studying a molecular analog model of an extreme gravitational system.</description>
+      <guid isPermaLink="false">oai:arXiv.org:2511.11379v2</guid>
+      <category>gr-qc</category>
+      <category>quant-ph</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 -0400</pubDate>
+      <arxiv:announce_type>replace</arxiv:announce_type>
+      <dc:rights>http://creativecommons.org/licenses/by/4.0/</dc:rights>
+      <dc:creator>Davi de Moura Esposti Moreira, Matheus Elias Pereira, Alexandre Grezzi de Miranda Schmidt</dc:creator>
+    </item>
+    <item>
+      <title>Vacuum Polarization, Geodesic Equation and Sachs-Wolfe Effect</title>
+      <link>https://arxiv.org/abs/2502.08748</link>
+      <description>arXiv:2502.08748v4 Announce Type: replace-cross 
+Abstract: We show that the null geodesic equation for photons is modified in the presence of a charged scalar field, with quantum fluctuations acting as an effective mass term that changes the null paths to timelike curves. This effect can be interpreted as a vacuum polarization phenomenon in curved spacetime. The resulting contribution to the Sachs-Wolfe effect varies with photon frequency, leading to frequency-dependent corrections to the cosmic microwave background (CMB) blackbody spectrum in the form of a $\mu$-distortion, as well as modifications to the CMB power spectrum. We estimate these within a standard inflationary scenario and find that while the correction to the CMB power spectrum is significant when the scalar field is light, the magnitude of the $\mu$-distortion depends strongly on the regularization prescription.</description>
+      <guid isPermaLink="false">oai:arXiv.org:2502.08748v4</guid>
+      <category>astro-ph.CO</category>
+      <category>gr-qc</category>
+      <category>hep-th</category>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 -0400</pubDate>
+      <arxiv:announce_type>replace-cross</arxiv:announce_type>
+      <dc:rights>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</dc:rights>
+      <dc:creator>Ali Kaya</dc:creator>
+    </item>
+  </channel>
+</rss>
