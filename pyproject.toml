@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Personal arXiv paper recommender with a learned reranker and a temporal evaluation."
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "httpx>=0.28.1",
+]
 
 [build-system]
 requires = ["uv_build>=0.10.7,<0.11"]
