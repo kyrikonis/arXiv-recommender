@@ -26,6 +26,32 @@ uv run --env-file .env scripts/fetch_daily.py
 Both scripts keep to arXiv's limit of one request every three seconds and can be re-run
 safely; papers already stored are skipped.
 
+Then fetch the seed papers in `profile.toml`, embed everything, and look at one day's top
+papers:
+
+```
+uv run scripts/fetch_seeds.py
+uv run scripts/embed.py
+uv run scripts/retrieve.py --day 2026-10-15
+```
+
+## How it works
+
+The profile (`profile.toml`) is a short description and a handful of seed papers for each
+of four interest areas. A paper's retrieval score is its highest similarity to any one
+profile item, so a strong match to one area isn't diluted by the others.
+
+- **BM25**, written out on top of scikit-learn's `CountVectorizer`. Each seed and
+  description is a separate query; scores are standardised per query before taking the
+  maximum, because raw BM25 grows with query length.
+- **SPECTER2** embeddings (`allenai/specter2_base` with the proximity adapter for papers
+  and the ad-hoc query adapter for the descriptions), compared by cosine similarity.
+
+There is no approximate-nearest-neighbour index. On 2026-10-23, scoring all 86,937 stored
+papers against the 28 profile items with a plain NumPy matrix product took 12.7 ms on a
+Ryzen 5 9600X, so an index like FAISS would add complexity without saving anything at
+this scale. Embedding the same papers took 224 s on an RTX 4070 Super.
+
 ## Results
 
 No results yet.
