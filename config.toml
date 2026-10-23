@@ -1,0 +1,25 @@
+categories = [
+    "cs.LG",
+    "stat.ML",
+    "cs.CL",
+    "cs.AI",
+    "quant-ph",
+    "astro-ph.CO",
+    "astro-ph.GA",
+    "astro-ph.SR",
+    "astro-ph.EP",
+    "astro-ph.HE",
+    "astro-ph.IM",
+    "gr-qc",
+]
+
+digest_size = 5
+seed = 7
+data_dir = "data"
+
+interests = """
+Machine learning and deep learning, LLMs and NLP, quantum computing (broadly, including
+algorithms, error correction and hardware), and astrophysics: cosmology and galaxies,
+stars and exoplanets, black holes and gravitational waves, and instrumentation including
+ML applied to astronomy data.
+"""
