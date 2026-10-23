@@ -28,16 +28,13 @@ class Paper:
     primary_category: str
     published: str # v1 submission time, ISO 8601 UTC, so it sorts as text
 
-
 COLUMNS = [f.name for f in fields(Paper)]
-
 
 def connect(path: Path) -> sqlite3.Connection:
     path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(path)
     conn.executescript(SCHEMA)
     return conn
-
 
 def insert_papers(conn: sqlite3.Connection, papers: list[Paper]) -> int:
     """Insert papers, ignoring IDs already stored. Returns how many were new."""
@@ -49,6 +46,24 @@ def insert_papers(conn: sqlite3.Connection, papers: list[Paper]) -> int:
         cur = conn.executemany(sql, [astuple(p) for p in papers])
     return cur.rowcount
 
+
+def get_papers(conn: sqlite3.Connection, ids: list[str] | None = None) -> list[Paper]:
+    """Papers with the given IDs (in no particular order), or all papers by publication time."""
+    sql = f"SELECT {', '.join(COLUMNS)} FROM papers"
+    if ids is None:
+        rows = conn.execute(sql + " ORDER BY published, id")
+    else:
+        rows = conn.execute(sql + f" WHERE id IN ({', '.join('?' * len(ids))})", ids)
+    return [Paper(*row) for row in rows]
+
+def papers_published(conn: sqlite3.Connection, start: str, end: str) -> list[Paper]:
+    """Papers first submitted in [start, end), compared as ISO 8601 text."""
+    rows = conn.execute(
+        f"SELECT {', '.join(COLUMNS)} FROM papers "
+        "WHERE published >= ? AND published < ? ORDER BY published, id",
+        (start, end),
+    )
+    return [Paper(*row) for row in rows]
 
 def mark_announced(conn: sqlite3.Connection, ids: list[str], day: str) -> int:
     """Record the announcement date, keeping the first one if a paper is seen again."""
