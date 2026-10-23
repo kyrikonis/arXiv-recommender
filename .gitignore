@@ -1,0 +1,17 @@
+# environment
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
+# data, models, indexes
+data/
+models/
+*.db
+*.faiss
+
+# private working files
+CLAUDE.md
+.claude/
+docs/notes/
