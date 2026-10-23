@@ -1,0 +1,47 @@
+# The starting profile: per interest area, a short description and seed papers.
+# Every seed must be published before history_start in config.toml, so none can appear
+# in training or test data. scripts/fetch_seeds.py checks this.
+
+[ml]
+description = "Machine learning and deep learning."
+seeds = [
+    "2501.00663", # Titans: Learning to Memorize at Test Time
+    "2312.00752", # Mamba: Linear-Time Sequence Modeling with Selective State Spaces
+    "2404.19756", # KAN: Kolmogorov-Arnold Networks
+    "1512.03385", # Deep Residual Learning for Image Recognition
+]
+
+[llm]
+description = "Large language models (LLMs) and natural language processing."
+seeds = [
+    "2501.12948", # DeepSeek-R1
+    "2501.19393", # s1: Simple test-time scaling
+    "2502.09992", # Large Language Diffusion Models
+    "1706.03762", # Attention Is All You Need
+]
+
+[quantum]
+description = "Quantum computing, including quantum algorithms, quantum error correction and quantum hardware."
+seeds = [
+    "2408.13687", # Quantum error correction below the surface code threshold
+    "2312.03982", # Logical quantum processor based on reconfigurable atom arrays
+    "2506.10191", # Constructive interference at the edge of quantum ergodic dynamics
+    "1801.00862", # Quantum Computing in the NISQ era and beyond
+    "quant-ph/9508027", # Shor: polynomial-time algorithms for prime factorization
+]
+
+[astro]
+description = "Astrophysics: cosmology and galaxies, stars and exoplanets, black holes and gravitational waves, and instrumentation, including machine learning applied to astronomy data."
+seeds = [
+    "2405.18485", # Spectroscopic confirmation of two luminous galaxies at z~14
+    "2307.16308", # Recent Advances on Inflation
+    "1810.09934", # Inflationary Cosmology: From Theory to Observations
+    "2504.12267", # New constraints on DMS and DMDS in the atmosphere of K2-18 b
+    "2507.08219", # GW231123: a binary black hole merger with total mass 190-265 Msun
+    "2503.16596", # A "Black Hole Star" and the Little Red Dots
+    "2310.03024", # AstroCLIP: a cross-modal foundation model for galaxies
+    "2412.02527", # The Multimodal Universe: 100TB of astronomical data for ML
+    "2502.15300", # Machine Learning in Stellar Astronomy: Progress up to 2024
+    "1906.08349", # Foreword to the focus issue on ML in astronomy and astrophysics
+    "2304.04869", # The James Webb Space Telescope Mission
+]
