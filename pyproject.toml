@@ -5,7 +5,12 @@ description = "Personal arXiv paper recommender with a learned reranker and a te
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "adapters>=1.3.0",
     "httpx>=0.28.1",
+    "numpy>=2.5.4",
+    "scikit-learn>=1.9.1",
+    "torch>=2.14.1",
+    "transformers>=4.57.6",
 ]
 
 [build-system]
@@ -15,11 +20,14 @@ build-backend = "uv_build"
 [tool.uv.build-backend]
 module-name = "recommender"
 
-[tool.ruff]
-line-length = 100
+# PyPI's Windows torch wheels are CPU-only; the CUDA build comes from PyTorch's own index.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu130" }]
 
-[tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -27,5 +35,4 @@ testpaths = ["tests"]
 [dependency-groups]
 dev = [
     "pytest>=9.1.1",
-    "ruff>=0.17.2",
 ]
