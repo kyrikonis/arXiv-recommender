@@ -35,6 +35,14 @@ uv run scripts/embed.py
 uv run scripts/retrieve.py --day 2026-10-15
 ```
 
+Build the labelling pools (once) and label them; progress is saved after every key:
+
+```
+uv run scripts/build_pools.py
+uv run scripts/label.py
+uv run scripts/label.py --stats
+```
+
 ## How it works
 
 The profile (`profile.toml`) is a short description and a handful of seed papers for each
@@ -51,6 +59,20 @@ There is no approximate-nearest-neighbour index. On 2026-10-23, scoring all 86,9
 papers against the 28 profile items with a plain NumPy matrix product took 12.7 ms on a
 Ryzen 5 9600X, so an index like FAISS would add complexity without saving anything at
 this scale. Embedding the same papers took 224 s on an RTX 4070 Super.
+
+### Labels
+
+Papers are grouped into the batches arXiv announces together: everything submitted
+between two weekday 14:00 US Eastern deadlines, with holidays merging neighbouring
+batches. The last 15 complete batches before 2026-10-22 are the test set and 12 batches
+spread over May to September are for training, so every training paper was submitted
+before every test paper.
+
+For each of these 27 batches I label a fixed pool of 40 papers: BM25's top 15, SPECTER2's
+top 15, and random papers from the batch to make up the rest. The pools are built once
+and never rebuilt, and every method is later scored on the same ones. The labelling tool
+shows them shuffled, without saying which method picked them. About 5% of papers come
+back a second time later in the queue, to measure how consistent my own labels are.
 
 ## Results
 
