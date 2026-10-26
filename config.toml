@@ -17,6 +17,11 @@ digest_size = 5
 seed = 7
 data_dir = "data"
 
-# Start of the historical window fetched for labelling. Seeds in profile.toml must be
-# published before this date.
+# The historical window fetched for labelling, end exclusive. Seeds in profile.toml must be
+# published before history_start.
 history_start = 2026-05-01
+history_end = 2026-10-23
+
+# Weekdays on which arXiv has no 14:00 ET submission deadline, so the batches either side
+# merge. From https://info.arxiv.org/help/availability.html
+holidays = [2026-06-19, 2026-07-03, 2026-09-07, 2026-10-12]

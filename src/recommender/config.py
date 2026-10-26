@@ -18,6 +18,8 @@ class Config:
     seed: int
     data_dir: Path
     history_start: date
+    history_end: date
+    holidays: frozenset[date]
 
     @property
     def db_path(self) -> Path:
@@ -47,8 +49,11 @@ def load_config(path: Path = ROOT / "config.toml") -> Config:
         raise ValueError("config: digest_size must be at least 1")
 
     # TOML has a native date type; a quoted string here would be a mistake.
-    if not isinstance(raw["history_start"], date):
-        raise ValueError("config: history_start must be an unquoted date, e.g. 2026-05-01")
+    dates = [raw["history_start"], raw["history_end"], *raw["holidays"]]
+    if not all(isinstance(d, date) for d in dates):
+        raise ValueError("config: history_start, history_end and holidays must be unquoted dates")
+    if raw["history_start"] >= raw["history_end"]:
+        raise ValueError("config: history_start must be before history_end")
 
     # Relative paths are resolved against the repo root so scripts work from any cwd.
     data_dir = Path(raw["data_dir"])
@@ -61,6 +66,8 @@ def load_config(path: Path = ROOT / "config.toml") -> Config:
         seed=raw["seed"],
         data_dir=data_dir,
         history_start=raw["history_start"],
+        history_end=raw["history_end"],
+        holidays=frozenset(raw["holidays"]),
     )
 
 def load_profile(path: Path = ROOT / "profile.toml") -> list[Area]:

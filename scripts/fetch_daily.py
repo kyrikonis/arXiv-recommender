@@ -11,7 +11,6 @@ from recommender.ingest import Arxiv, fetch_announced, fetch_by_ids
 
 log = logging.getLogger("fetch_daily")
 
-
 def main() -> None:
     cfg = load_config()
     client = Arxiv()
@@ -28,7 +27,6 @@ def main() -> None:
     added = insert_papers(conn, papers)
     marked = mark_announced(conn, [p.id for p in papers], day)
     log.info("listing %s: %d papers, %d new, %d marked announced", day, len(papers), added, marked)
-
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")

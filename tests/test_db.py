@@ -46,7 +46,6 @@ def test_mark_announced_keeps_first_date(tmp_path):
     rows = dict(conn.execute("SELECT id, announced FROM papers"))
     assert rows == {PAPER.id: "2026-10-02", OTHER.id: "2026-10-05"}
 
-
 def test_get_papers_round_trips_fields(tmp_path):
     conn = connect(tmp_path / "papers.db")
     insert_papers(conn, [PAPER, OTHER])

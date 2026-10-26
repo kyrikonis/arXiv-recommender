@@ -16,7 +16,6 @@ SPECTER_ADAPTERS = {"proximity": "allenai/specter2", "adhoc_query": "allenai/spe
 MAX_TOKENS = 512
 EMBED_DIM = 768
 
-
 class BM25:
     """Okapi BM25 with document frequencies and average length taken from a fixed corpus."""
 
@@ -43,12 +42,10 @@ class BM25:
         query_term = (self.vectorizer.transform(queries) > 0).astype(np.float64)
         return (query_term @ doc_term.T).toarray()
 
-
 def zscore_rows(x: np.ndarray) -> np.ndarray:
     """Standardise each row; a constant row becomes all zeros."""
     std = x.std(axis=1, keepdims=True)
     return np.divide(x - x.mean(axis=1, keepdims=True), std, out=np.zeros_like(x), where=std > 0)
-
 
 def combine(item_scores: np.ndarray, how: str = "max") -> np.ndarray:
     """Collapse (profile items x docs) scores into one score per doc."""
@@ -58,7 +55,6 @@ def combine(item_scores: np.ndarray, how: str = "max") -> np.ndarray:
         return item_scores.mean(axis=0)
     raise ValueError(f"unknown combine method {how!r}")
 
-
 def bm25_profile_scores(
     bm25: BM25, queries: list[str], docs: list[str], how: str = "max"
 ) -> np.ndarray:
@@ -67,15 +63,12 @@ def bm25_profile_scores(
     # one scale before combining.
     return combine(zscore_rows(bm25.scores(queries, docs)), how)
 
-
 def dense_profile_scores(profile: np.ndarray, docs: np.ndarray, how: str = "max") -> np.ndarray:
     # Vectors are unit length, so the dot product is the cosine similarity.
     return combine(profile @ docs.T, how)
 
-
 def paper_text(title: str, abstract: str, sep: str = "[SEP]") -> str:
     return title + sep + abstract
-
 
 def in_length_order(texts: list[str], encode: Callable[[list[str]], np.ndarray], batch_size: int):
     """Encode texts in batches of similar length, returning rows in the original order.
@@ -92,7 +85,6 @@ def in_length_order(texts: list[str], encode: Callable[[list[str]], np.ndarray],
     out[order] = np.concatenate(parts)
     return out
 
-
 def load_specter(device: str):
     # Imported here so the rest of the module (BM25, scoring) works without loading
     # the adapters library.
@@ -104,7 +96,6 @@ def load_specter(device: str):
     for name, repo in SPECTER_ADAPTERS.items():
         model.load_adapter(repo, source="hf", load_as=name)
     return tokenizer, model.to(device).eval()
-
 
 def embed(texts: list[str], tokenizer, model, adapter: str, batch_size: int = 64) -> np.ndarray:
     """Unit-length SPECTER2 embeddings (the [CLS] vector) for each text."""
@@ -128,11 +119,9 @@ def embed(texts: list[str], tokenizer, model, adapter: str, batch_size: int = 64
 
     return in_length_order(texts, encode, batch_size)
 
-
 def save_embeddings(path: Path, ids: list[str], vectors: np.ndarray) -> None:
     np.save(path.with_suffix(".npy"), vectors.astype(np.float32))
     path.with_suffix(".ids").write_text("\n".join(ids))
-
 
 def load_embeddings(path: Path) -> tuple[list[str], np.ndarray]:
     if not path.with_suffix(".npy").exists():

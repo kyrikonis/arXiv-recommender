@@ -12,7 +12,6 @@ from recommender.ingest import Arxiv, fetch_by_ids
 
 log = logging.getLogger("fetch_seeds")
 
-
 def main() -> None:
     cfg = load_config()
     seeds = [s for area in load_profile() for s in area.seeds]
@@ -38,7 +37,6 @@ def main() -> None:
     if problems:
         sys.exit(1)
     log.info("all %d seeds stored and published before %s", len(seeds), cutoff)
-
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")

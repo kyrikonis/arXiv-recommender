@@ -28,7 +28,6 @@ NS = {
     "opensearch": "http://a9.com/-/spec/opensearch/1.1/",
 }
 
-
 class Arxiv:
     """HTTP client that makes one request at a time, at least `delay` seconds apart."""
 
@@ -76,7 +75,6 @@ class Arxiv:
                 time.sleep(backoff)
         raise RuntimeError(f"giving up on {url} after {MAX_ATTEMPTS} attempts: {error}")
 
-
 def arxiv_id(raw: str) -> str:
     """'http://arxiv.org/abs/2610.00844v2' or 'oai:arXiv.org:hep-th/9711200v3' -> unversioned ID."""
     for prefix in ("/abs/", "oai:arXiv.org:"):
@@ -84,11 +82,9 @@ def arxiv_id(raw: str) -> str:
             raw = raw.split(prefix, 1)[1]
     return re.sub(r"v\d+$", "", raw)
 
-
 def clean(text: str | None) -> str:
     # Titles and abstracts contain hard line breaks and runs of spaces from the submission.
     return " ".join((text or "").split())
-
 
 def parse_api_feed(xml: bytes) -> tuple[list[Paper], int]:
     """Parse an API response into papers plus the total number of results for the query."""
@@ -114,7 +110,6 @@ def parse_api_feed(xml: bytes) -> tuple[list[Paper], int]:
         )
     return papers, total
 
-
 def parse_rss(xml: bytes) -> tuple[str, list[str]]:
     """Return the listing date and the IDs of new and cross-listed papers in an RSS feed."""
     channel = ET.fromstring(xml).find("channel")
@@ -125,7 +120,6 @@ def parse_rss(xml: bytes) -> tuple[str, list[str]]:
         if item.findtext("arxiv:announce_type", namespaces=NS) in KEEP_ANNOUNCE_TYPES
     ]
     return day, ids
-
 
 def search(client: Arxiv, query: str) -> list[Paper]:
     papers: list[Paper] = []
@@ -151,13 +145,11 @@ def search(client: Arxiv, query: str) -> list[Paper]:
         start += len(page)
     return papers
 
-
 def fetch_range(client: Arxiv, category: str, start: date, end: date) -> list[Paper]:
     """Papers in `category` (primary or cross-listed) first submitted in [start, end), UTC."""
     return search(
         client, f"cat:{category} AND submittedDate:[{start:%Y%m%d}0000 TO {end:%Y%m%d}0000]"
     )
-
 
 def fetch_by_ids(client: Arxiv, ids: list[str]) -> list[Paper]:
     papers = []
@@ -167,7 +159,6 @@ def fetch_by_ids(client: Arxiv, ids: list[str]) -> list[Paper]:
         page, _ = parse_api_feed(client.get(API_URL, params))
         papers.extend(page)
     return papers
-
 
 def fetch_announced(client: Arxiv, categories: tuple[str, ...]) -> tuple[str | None, list[str]]:
     """The latest listing date and the IDs announced in it across all categories."""
