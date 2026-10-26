@@ -3,8 +3,10 @@
     uv run scripts/label.py
     uv run scripts/label.py --stats
 
-Relevant means I'd want to read it as news: an accessible paper, a notable result or a
-readable review in my areas. Narrow or incremental work in the right topic is a no.
+Relevant means it would earn one of the 5 digest slots for its day. Yes: a headline
+result, a readable review or tutorial, a method or model likely to matter widely, an
+abstract I'd want to keep reading. No, even when the topic is mine: incremental benchmark
+gains, narrow technical variants, known methods on niche data, dense specialist jargon.
 """
 
 import argparse
@@ -13,10 +15,11 @@ import textwrap
 
 from sklearn.metrics import cohen_kappa_score
 
-from recommender.config import load_config
+from recommender.config import ROOT, load_config
 from recommender.db import (
     add_label,
     connect,
+    export_labels,
     last_labelled,
     next_unlabelled,
     pool_labels,
@@ -40,6 +43,7 @@ def show(paper, done: int, total: int, note: str = "") -> None:
     print(textwrap.fill(paper.title, width) + "\n")
     print(f"{paper.categories}    https://arxiv.org/abs/{paper.id}\n")
     print(textwrap.fill(paper.abstract, width) + "\n")
+    print("If this were one of today's 5 digest papers, would I be glad it was there?")
     print("y relevant   n not relevant   s skip   u undo   q quit")
 
 def label_loop(conn) -> None:
@@ -86,7 +90,9 @@ def main() -> None:
         print_stats(conn)
     else:
         label_loop(conn)
-        print()
+        # Keep the committed CSVs in step with the database after every session.
+        export_labels(conn, ROOT / "labels")
+        print("\nlabels written to labels/*.csv; commit them to keep them safe")
         print_stats(conn)
 
 if __name__ == "__main__":

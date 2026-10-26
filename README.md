@@ -35,12 +35,20 @@ uv run scripts/embed.py
 uv run scripts/retrieve.py --day 2026-10-15
 ```
 
-Build the labelling pools (once) and label them; progress is saved after every key:
+Build the labelling pools (once) and label them; progress is saved after every key, and
+the pools and labels are written to `labels/*.csv` on exit:
 
 ```
 uv run scripts/build_pools.py
 uv run scripts/label.py
 uv run scripts/label.py --stats
+```
+
+The CSVs are committed. On a fresh clone, fetch the papers and then load my labels
+instead of building new pools:
+
+```
+uv run scripts/labels_csv.py import
 ```
 
 ## How it works
@@ -73,6 +81,13 @@ top 15, and random papers from the batch to make up the rest. The pools are buil
 and never rebuilt, and every method is later scored on the same ones. The labelling tool
 shows them shuffled, without saying which method picked them. About 5% of papers come
 back a second time later in the queue, to measure how consistent my own labels are.
+
+A paper counts as relevant only if it would earn one of the day's five digest slots: a
+headline result, a readable review, or work likely to matter widely, not just anything on
+my topics. I first labelled 401 papers with the looser "is this in my interests" rule;
+about half came out relevant, including 40% of the randomly sampled papers, which would
+leave nothing for a ranker to separate. Those labels are kept in
+`labels/labels_broad.csv` but not used, and I started again with the stricter rule.
 
 ## Results
 
