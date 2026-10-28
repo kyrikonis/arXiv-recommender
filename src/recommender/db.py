@@ -1,3 +1,4 @@
+import csv
 import sqlite3
 from dataclasses import astuple, dataclass, fields
 from pathlib import Path
@@ -176,3 +177,38 @@ def repeat_pairs(conn: sqlite3.Connection) -> list[tuple[int, int]]:
         WHERE first.label IS NOT NULL AND again.label IS NOT NULL
         """
     ).fetchall()
+
+# The hand-made part of the database, committed as CSV under labels/ so the evaluation can
+# be rebuilt from a fresh clone. Rows are written in insertion order, which keeps the
+# labels table's "latest row wins" meaning intact on import.
+LABEL_TABLES = {
+    "pools": ["paper_id", "batch", "split", "source"],
+    "queue": ["position", "paper_id", "is_repeat"],
+    "labels": ["position", "label", "labelled_at"],
+}
+
+def export_labels(conn: sqlite3.Connection, out_dir: Path) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for table, cols in LABEL_TABLES.items():
+        rows = conn.execute(f"SELECT {', '.join(cols)} FROM {table} ORDER BY rowid")
+        with (out_dir / f"{table}.csv").open("w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(cols)
+            writer.writerows(rows)
+
+def import_labels(conn: sqlite3.Connection, in_dir: Path) -> None:
+    """Load exported CSVs into a database that has no pools yet."""
+    if pools_exist(conn):
+        raise ValueError("this database already has pools; import only into a fresh one")
+    with conn:
+        for table, cols in LABEL_TABLES.items():
+            with (in_dir / f"{table}.csv").open(newline="", encoding="utf-8") as f:
+                reader = csv.reader(f)
+                if next(reader) != cols:
+                    raise ValueError(f"{table}.csv: expected columns {cols}")
+                # CSV has no null; an empty cell is a skipped label.
+                rows = [[None if v == "" else v for v in row] for row in reader]
+            conn.executemany(
+                f"INSERT INTO {table} ({', '.join(cols)}) VALUES ({', '.join('?' * len(cols))})",
+                rows,
+            )

@@ -84,7 +84,7 @@ back a second time later in the queue, to measure how consistent my own labels a
 
 A paper counts as relevant only if it would earn one of the day's five digest slots: a
 headline result, a readable review, or work likely to matter widely, not just anything on
-my topics. I first labelled 401 papers with the looser "is this in my interests" rule;
+my topics. I first labelled around 400 papers with based off if I would be generally interested;
 about half came out relevant, including 40% of the randomly sampled papers, which would
 leave nothing for a ranker to separate. Those labels are kept in
 `labels/labels_broad.csv` but not used, and I started again with the stricter rule.

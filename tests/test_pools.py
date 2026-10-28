@@ -7,6 +7,8 @@ from recommender.db import (
     Paper,
     add_label,
     connect,
+    export_labels,
+    import_labels,
     insert_papers,
     last_labelled,
     next_unlabelled,
@@ -129,3 +131,23 @@ def test_repeat_label_does_not_overwrite_the_first(tmp_path):
     labels = {pid: label for _, _, pid, _, label in pool_labels(conn)}
     assert labels[PAPER.id] == 1
     assert repeat_pairs(conn) == [(1, 0)]
+
+def test_labels_survive_export_and_import(tmp_path):
+    conn = labelled_db(tmp_path)
+    add_label(conn, 0, 0)
+    add_label(conn, 0, 1) # relabelled: the later row must still win after import
+    add_label(conn, 1, None)
+    add_label(conn, 2, 0)
+    export_labels(conn, tmp_path / "labels")
+
+    fresh = connect(tmp_path / "fresh.db")
+    import_labels(fresh, tmp_path / "labels")
+    assert pool_labels(fresh) == pool_labels(conn)
+    assert repeat_pairs(fresh) == repeat_pairs(conn) == [(1, 0)]
+    assert next_unlabelled(fresh) is None
+
+def test_import_refuses_a_database_with_pools(tmp_path):
+    conn = labelled_db(tmp_path)
+    export_labels(conn, tmp_path / "labels")
+    with pytest.raises(ValueError, match="already has pools"):
+        import_labels(conn, tmp_path / "labels")
