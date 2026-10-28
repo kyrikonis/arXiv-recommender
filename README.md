@@ -63,7 +63,7 @@ profile item, so a strong match to one area isn't diluted by the others.
 - **SPECTER2** embeddings (`allenai/specter2_base` with the proximity adapter for papers
   and the ad-hoc query adapter for the descriptions), compared by cosine similarity.
 
-There is no approximate-nearest-neighbour index. On 2026-10-23, scoring all 86,937 stored
+There is no approximate-nearest-neighbour index. Scoring all 86,937 stored
 papers against the 28 profile items with a plain NumPy matrix product took 12.7 ms on a
 Ryzen 5 9600X, so an index like FAISS would add complexity without saving anything at
 this scale. Embedding the same papers took 224 s on an RTX 4070 Super.
@@ -82,12 +82,41 @@ and never rebuilt, and every method is later scored on the same ones. The labell
 shows them shuffled, without saying which method picked them. About 5% of papers come
 back a second time later in the queue, to measure how consistent my own labels are.
 
-A paper counts as relevant only if it would earn one of the day's five digest slots: a
-headline result, a readable review, or work likely to matter widely, not just anything on
-my topics. I first labelled around 400 papers with based off if I would be generally interested;
+A paper counts as relevant only if it would earn one of the day's five digest slots ("if
+this were in today's digest, would I be glad it was there?"); being on one of my topics
+isn't enough. I first labelled around 400 papers based on whether I'd be generally interested;
 about half came out relevant, including 40% of the randomly sampled papers, which would
 leave nothing for a ranker to separate. Those labels are kept in
 `labels/labels_broad.csv` but not used, and I started again with the stricter rule.
+
+My final manual labels cover 1,079 of the 1,080 pool papers: 79 of 479
+training papers and 68 of 600 test papers are relevant. On the 54 hidden repeats I gave
+the same answer 85% of the time, a Cohen's kappa of 0.47. Part of every label is my own
+inconsistency on borderline papers, which caps how closely any model can match them.
+
+### Rerankers
+
+Each reranker orders a pool's 40 papers, and each is a baseline for the next:
+
+- **Logistic regression** on the 768-dimensional SPECTER2 embedding plus the two
+  retrieval scores.
+- **A small MLP** (one hidden layer) on the same features, averaged over 5 seeds.
+- **A cross-encoder**, `cross-encoder/ms-marco-MiniLM-L6-v2`, reading my four interest
+  descriptions and the paper's title and abstract together. It is reported both as
+  downloaded and fine-tuned on my labels, to separate what pretraining gives from what
+  the labels add.
+
+Hyperparameters are chosen by expanding-window cross-validation on the 12 training pools
+(each of the last six is scored by a model trained on every pool before it), so the test
+labels are not read until the final evaluation. The scores for every configuration tried
+are in `results/cv_*.md`.
+
+```
+uv run scripts/train.py --model baselines
+uv run scripts/train.py --model logreg
+uv run scripts/train.py --model mlp
+uv run scripts/train.py --model cross
+```
 
 ## Results
 

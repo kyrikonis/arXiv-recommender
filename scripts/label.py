@@ -3,10 +3,8 @@
     uv run scripts/label.py
     uv run scripts/label.py --stats
 
-Relevant means it would earn one of the 5 digest slots for its day. Yes: a headline
-result, a readable review or tutorial, a method or model likely to matter widely, an
-abstract I'd want to keep reading. No, even when the topic is mine: incremental benchmark
-gains, narrow technical variants, known methods on niche data, dense specialist jargon.
+Relevant means the paper would earn one of the 5 digest slots for its day. Being on one
+of my topics is not enough on its own.
 """
 
 import argparse
