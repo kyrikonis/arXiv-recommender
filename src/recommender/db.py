@@ -165,6 +165,19 @@ def pool_labels(conn: sqlite3.Connection) -> list[tuple[str, str, str, str, int 
         """
     ).fetchall()
 
+def labelled_rows(conn: sqlite3.Connection, split: str) -> list[tuple[str, str, int]]:
+    """(batch, paper_id, label) for the given split, leaving out skipped/unlabelled papers.
+
+    Takes the split explicitly so training code can only ever ask for "train".
+    """
+    if split not in ("train", "test"):
+        raise ValueError(f"unknown split {split!r}")
+    return [
+        (batch, pid, label)
+        for batch, s, pid, _, label in pool_labels(conn)
+        if s == split and label is not None
+    ]
+
 def repeat_pairs(conn: sqlite3.Connection) -> list[tuple[int, int]]:
     """(first label, repeat label) for repeated papers where both answers are a 0 or 1."""
     return conn.execute(
