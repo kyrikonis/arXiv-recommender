@@ -116,8 +116,85 @@ uv run scripts/train.py --model baselines
 uv run scripts/train.py --model logreg
 uv run scripts/train.py --model mlp
 uv run scripts/train.py --model cross
+uv run scripts/evaluate.py
 ```
 
 ## Results
 
-No results yet.
+Scored once on the test set on 2026-10-30: 15 announcement batches from 2026-10-01 to
+2026-10-22, 600 labelled papers of which 68 are relevant, with models trained on 479
+labelled papers (79 relevant) from May to September. Each method reranks the same 40-paper
+pool per day; numbers are means over the 15 days with 95% bootstrap intervals. The full
+report, including P@10, nDCG@5 and every day's scores, is in `results/results.md`, and
+`uv run scripts/evaluate.py` regenerates it.
+
+| Method | nDCG@10 | P@5 | MRR |
+|---|---|---|---|
+| Random order | 0.183 (0.168-0.197) | 0.114 (0.089-0.140) | 0.281 (0.240-0.321) |
+| BM25 profile score | 0.281 (0.179-0.386) | 0.133 (0.067-0.213) | 0.378 (0.218-0.558) |
+| SPECTER2 profile score | 0.158 (0.076-0.249) | 0.120 (0.053-0.200) | 0.284 (0.145-0.453) |
+| Logistic regression | 0.319 (0.220-0.420) | 0.173 (0.093-0.267) | 0.397 (0.240-0.577) |
+| MLP | 0.341 (0.252-0.436) | 0.213 (0.120-0.307) | 0.378 (0.224-0.552) |
+| Cross-encoder, pretrained only | 0.172 (0.082-0.276) | 0.147 (0.067-0.240) | 0.263 (0.148-0.408) |
+| Cross-encoder, fine-tuned | 0.396 (0.283-0.512) | 0.307 (0.200-0.427) | 0.526 (0.351-0.708) |
+
+Paired comparisons on nDCG@10, chosen before the test set was scored, with an exact
+sign-flip permutation test over the 15 days and Holm's correction for the seven of them:
+
+- The fine-tuned cross-encoder beats random order (+0.213, better on 13 of 15 days,
+  adjusted p = 0.010) and the same model before fine-tuning (+0.224, adjusted p = 0.015).
+  Fine-tuning on my labels is what made it useful: as downloaded, it ranks no better than
+  random (p = 0.84).
+- The MLP beats random order (+0.158, adjusted p = 0.023). Logistic regression is ahead of
+  random on 12 of 15 days (+0.136) but misses significance after the correction (adjusted
+  p = 0.060).
+- The fine-tuned cross-encoder is ahead of logistic regression on average (+0.077) but the
+  interval spans zero (adjusted p = 0.45); 15 test days can't separate the learned models.
+
+In practical terms, the fine-tuned cross-encoder puts on average 1.5 relevant papers in a
+5-paper digest, against 0.6 for random order.
+
+On the CPU (Ryzen 5 9600X), reranking a 40-paper pool takes under 1 ms for logistic
+regression and the MLP and about 3.1 s for the three-model cross-encoder ensemble.
+Embedding 40 new papers with SPECTER2, which the other learned models need first, takes
+about 7.3 s.
+
+A learning curve (retraining on the most recent 3, 6, 9 and 12 training pools) is in
+`results/results.md`. The fine-tuned cross-encoder goes from 0.297 to 0.395 nDCG@10, but
+not monotonically, and every interval overlaps, so it doesn't show whether more labels
+would help.
+
+## What I learned
+
+- My first labels ("is this in my interests?") made about half of all papers relevant,
+  including 40% of random ones, so nothing could beat random order. Deciding what counts
+  as relevant mattered more than any model choice.
+- Topic similarity alone is weak inside a pool of on-topic papers: the SPECTER2 profile
+  score is no better than random here. What separates the papers I'd want from the rest
+  had to be learned from my labels.
+- Cross-validation scores were optimistic. The fine-tuned cross-encoder scored 0.515
+  nDCG@10 in cross-validation and 0.396 on test; the pretrained cross-encoder looked
+  strong in cross-validation (0.383) and was no better than random on test. With five or
+  six small validation pools, picking the best of many configurations flatters the
+  winner, which is why only the untouched test set counts.
+- Several grids had their best value on the edge and needed widening; checking that
+  before trusting a tuned hyperparameter changed which settings were chosen.
+
+## Limitations
+
+- **Small test set.** 15 days and 68 relevant papers give wide intervals; the learned
+  models can't be told apart from each other with confidence.
+- **One labeller, moderately consistent.** On 54 hidden repeats I agreed with my own
+  earlier answer 85% of the time (Cohen's kappa 0.47). Some of what the models get
+  "wrong" is noise in my own labels.
+- **Pooling.** Only 40 papers per day are labelled: BM25's top 15, SPECTER2's top 15 and a
+  random sample. Relevant papers outside the pool are never seen, so these numbers measure
+  ranking within the pool, not recall over the whole day.
+- **Approximate days.** Test days are submission batches derived from arXiv's 14:00 ET
+  deadline. Cross-lists of older papers, which arXiv announces later, aren't placed on the
+  day they were actually announced.
+- **Latency is measured on one machine and depends on what is already computed.** The
+  linear model and MLP rerank in under a millisecond only because embeddings already
+  exist; for new papers they first need SPECTER2 (7.3 s per 40 papers on CPU). The
+  cross-encoder reads raw text, so end to end it is not the slow option, despite its
+  3.1 s reranking time.
