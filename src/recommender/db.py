@@ -39,6 +39,16 @@ CREATE TABLE IF NOT EXISTS labels (
     label INTEGER CHECK (label IN (0, 1)),
     labelled_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
 );
+
+-- Feedback on served digests. Separate from the labels above so nothing given later can
+-- change the reported evaluation; append-only, the latest row per paper counts. No foreign
+-- key: digest papers are fetched by the daily job and may not be in this database.
+CREATE TABLE IF NOT EXISTS feedback (
+    paper_id TEXT NOT NULL,
+    digest_day TEXT NOT NULL,
+    label INTEGER NOT NULL CHECK (label IN (0, 1)),
+    given_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
+);
 """
 
 @dataclass(frozen=True)
@@ -225,3 +235,20 @@ def import_labels(conn: sqlite3.Connection, in_dir: Path) -> None:
                 f"INSERT INTO {table} ({', '.join(cols)}) VALUES ({', '.join('?' * len(cols))})",
                 rows,
             )
+
+FEEDBACK_COLUMNS = ["paper_id", "digest_day", "label", "given_at"]
+
+def add_feedback(conn: sqlite3.Connection, paper_id: str, digest_day: str, label: int) -> None:
+    with conn:
+        conn.execute(
+            "INSERT INTO feedback (paper_id, digest_day, label) VALUES (?, ?, ?)",
+            (paper_id, digest_day, label),
+        )
+
+def export_feedback(conn: sqlite3.Connection, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rows = conn.execute(f"SELECT {', '.join(FEEDBACK_COLUMNS)} FROM feedback ORDER BY rowid")
+    with path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(FEEDBACK_COLUMNS)
+        writer.writerows(rows)
