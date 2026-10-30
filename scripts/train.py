@@ -9,6 +9,7 @@ it on all of them and save it. Never reads test labels.
 
 import argparse
 import itertools
+import json
 import logging
 import shutil
 from datetime import date
@@ -178,6 +179,11 @@ def refit_cross(pools, config, seed, device):
     y = np.concatenate([p.labels for p in pools])
     # Clear old seeds so a smaller ensemble can't be mixed with a previous run's models.
     shutil.rmtree(MODELS / "cross", ignore_errors=True)
+    (MODELS / "cross").mkdir(parents=True)
+    # Kept next to the weights so evaluation can retrain with the same settings for the
+    # learning curve. max_epochs is part of the setting: it shapes the learning-rate decay.
+    saved = {**config, "max_epochs": CROSS_MAX_EPOCHS, "seeds": CROSS_SEEDS}
+    (MODELS / "cross" / "config.json").write_text(json.dumps(saved))
     if config["epochs"] == 0:
         model, tokenizer = load_cross(CROSS_ENCODER, device)
         model.save_pretrained(MODELS / "cross" / "seed0")

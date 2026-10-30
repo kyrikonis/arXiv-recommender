@@ -157,3 +157,19 @@ def fit_cross(
         if after_epoch:
             after_epoch(epoch, model, tokenizer)
     return model, tokenizer
+
+def load_mlp(path) -> list[tuple[MLP, np.ndarray, np.ndarray]]:
+    """The MLP ensemble saved by train.py, ready for predict_mlp."""
+    saved = torch.load(path, weights_only=False)
+    config = saved["config"]
+    models = []
+    for state, mean, std in zip(saved["states"], saved["means"], saved["stds"]):
+        model = MLP(len(mean), config["hidden"], config["dropout"])
+        model.load_state_dict(state)
+        model.eval()
+        models.append((model, mean, std))
+    return models
+
+def predict_cross_ensemble(models, query: str, texts: list[str], device: str) -> np.ndarray:
+    """Mean logit over the fine-tuned seeds."""
+    return np.mean([predict_cross(m, tok, query, texts, device) for m, tok in models], axis=0)
