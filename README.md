@@ -119,6 +119,38 @@ uv run scripts/train.py --model cross
 uv run scripts/evaluate.py
 ```
 
+### Daily digest and feedback
+
+A GitHub Actions workflow (`.github/workflows/daily.yml`) runs at 06:00 UTC, Monday to
+Friday, after arXiv's feeds switch to the new listing. It fetches the announcement, drops
+papers first submitted more than 14 days earlier (old papers newly cross-listed), scores
+every remaining paper with the fine-tuned cross-encoder on CPU, and commits the top five
+as JSON to the `digests` branch. The model weights aren't in the repo; the workflow
+downloads them from the `models-v1` release. On 2026-10-30 a run on my PC's CPU scored that
+day's 1,162 recent papers and took 153 s including the arXiv requests.
+
+The digest scores every paper of the day rather than a BM25/SPECTER2 shortlist, because
+neither retriever did better than random within the evaluation pools. That is a different
+setting from the evaluation, which measured ranking within 40-paper pools.
+
+A small FastAPI app reads the digests and records feedback in a separate table, exported
+to `labels/feedback.csv` and never mixed into the evaluation labels:
+
+```
+uv run uvicorn recommender.api:app      # http://localhost:8000
+```
+
+or in Docker, keeping the database and labels on the host:
+
+```
+docker build -t arxiv-digest .
+docker run -p 8000:8000 -v ./data:/app/data -v ./labels:/app/labels arxiv-digest
+```
+
+`GET /` shows the latest digest with relevant / not relevant buttons; `GET /digest`,
+`GET /digest/{day}` and `POST /feedback` are the JSON endpoints. Set `DIGESTS` to a local
+folder to serve digests from disk instead of the GitHub branch.
+
 ## Results
 
 Scored once on the test set on 2026-10-30: 15 announcement batches from 2026-10-01 to

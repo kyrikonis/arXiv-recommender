@@ -1,0 +1,60 @@
+name: daily digest
+
+on:
+  schedule:
+    # arXiv's feeds switch to the new listing at midnight US Eastern (04:00-05:00 UTC), and
+    # listings exist Monday to Friday mornings, after the Sunday-Thursday announcements.
+    - cron: "0 6 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10
+        with:
+          enable-cache: true
+
+      # Linux resolves torch to the CPU-only build (see tool.uv.sources in pyproject.toml).
+      - run: uv sync --frozen --no-dev
+
+      # Model weights are not committed; they live as an asset on the models-v1 release.
+      - name: Download the fine-tuned cross-encoder
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download models-v1 --pattern cross-encoder.zip
+          unzip -q cross-encoder.zip -d models
+
+      # Digests go to their own branch so the bot's daily commits stay out of main's history.
+      - name: Check out the digests branch
+        run: |
+          if git ls-remote --exit-code --heads origin digests; then
+            git fetch origin digests:refs/remotes/origin/digests
+            git worktree add -B digests site origin/digests
+          else
+            git worktree add --orphan -b digests site
+          fi
+
+      - name: Build today's digest
+        env:
+          ARXIV_CONTACT: ${{ secrets.ARXIV_CONTACT }}
+        run: uv run scripts/run_daily.py --out site
+
+      - name: Commit the digest
+        working-directory: site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no new digest"
+            exit 0
+          fi
+          git commit -m "digest $(date -u +%F)"
+          git push origin digests

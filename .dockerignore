@@ -1,0 +1,14 @@
+.git
+.venv
+.claude
+data
+models
+labels
+results
+docs
+tests
+**/__pycache__
+.pytest_cache
+.env
+*.tex
+CLAUDE.md
