@@ -64,3 +64,44 @@ def cross_validate(
         for train, v in expanding_folds(n_pools, first_validation)
     ]
     return mean_metrics(per_pool)
+
+def expected_random_metrics(
+    labels: np.ndarray, rng: np.random.Generator, draws: int = 1000
+) -> dict[str, float]:
+    """A random ordering's expected metrics for one pool, averaged over many shuffles."""
+    per_draw = [pool_metrics(labels, rng.random(len(labels))) for _ in range(draws)]
+    return mean_metrics(per_draw)
+
+def bootstrap_ci(
+    values: np.ndarray, rng: np.random.Generator, n: int = 10_000, level: float = 0.95
+) -> tuple[float, float]:
+    """Percentile bootstrap interval for the mean, resampling days with replacement."""
+    values = np.asarray(values, dtype=float)
+    means = values[rng.integers(0, len(values), size=(n, len(values)))].mean(axis=1)
+    tail = (1 - level) / 2 * 100
+    return float(np.percentile(means, tail)), float(np.percentile(means, 100 - tail))
+
+def sign_flip_p(differences: np.ndarray) -> float:
+    """Exact two-sided paired permutation test on per-day differences.
+
+    If two methods were equally good, each day's difference would be as likely positive as
+    negative. Enumerating all 2^n sign patterns gives the exact share that produce a mean
+    difference at least as extreme as the one observed.
+    """
+    d = np.asarray(differences, dtype=float)
+    if len(d) > 20:
+        raise ValueError("exact enumeration is only practical for up to 20 days")
+    patterns = 1 - 2 * ((np.arange(2 ** len(d))[:, None] >> np.arange(len(d))) & 1)
+    null_means = np.abs((patterns * d).mean(axis=1))
+    # The small tolerance stops floating-point noise from excluding the observed pattern.
+    return float(np.mean(null_means >= abs(d.mean()) - 1e-12))
+
+def holm(p_values: list[float]) -> list[float]:
+    """Holm-Bonferroni adjusted p-values, in the input order."""
+    order = np.argsort(p_values)
+    adjusted = np.empty(len(p_values))
+    running = 0.0
+    for rank, i in enumerate(order):
+        running = max(running, (len(p_values) - rank) * p_values[i])
+        adjusted[i] = min(running, 1.0)
+    return adjusted.tolist()

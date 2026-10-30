@@ -4,14 +4,18 @@ import numpy as np
 import pytest
 
 from recommender.evaluate import (
+    bootstrap_ci,
     cross_validate,
     expanding_folds,
+    expected_random_metrics,
+    holm,
     mean_metrics,
     mrr,
     ndcg_at_k,
     pool_metrics,
     precision_at_k,
     ranked_labels,
+    sign_flip_p,
 )
 
 def test_ndcg_matches_hand_computation():
@@ -67,3 +71,27 @@ def test_cross_validate_passes_folds_and_scores_validation_pool():
     assert calls == [([0], 1), ([0, 1], 2)]
     assert means["ndcg@10"] == pytest.approx(1.0)
     assert means["mrr"] == pytest.approx(1.0)
+
+def test_bootstrap_ci_of_constant_is_that_constant_and_brackets_the_mean():
+    rng = np.random.default_rng(0)
+    assert bootstrap_ci(np.full(15, 0.4), rng) == pytest.approx((0.4, 0.4))
+    values = rng.random(15)
+    low, high = bootstrap_ci(values, rng)
+    assert low < values.mean() < high
+
+def test_sign_flip_p_is_exact():
+    # All 5 differences positive: only the all-plus and all-minus patterns are as extreme.
+    assert sign_flip_p(np.array([0.1, 0.2, 0.3, 0.4, 0.5])) == pytest.approx(2 / 32)
+    assert sign_flip_p(np.zeros(5)) == pytest.approx(1.0)
+    assert sign_flip_p(np.array([0.3, -0.3])) == pytest.approx(1.0)
+
+def test_holm_adjusts_in_order_and_stays_monotone():
+    # Sorted 0.01, 0.02, 0.04 get multiplied by 3, 2, 1 -> 0.03, 0.04, 0.04.
+    assert holm([0.04, 0.01, 0.02]) == pytest.approx([0.04, 0.03, 0.04])
+    assert holm([0.5, 0.9]) == pytest.approx([1.0, 1.0])
+
+def test_expected_random_metrics_match_the_closed_form():
+    # One relevant paper among two: it is first half the time.
+    means = expected_random_metrics(np.array([1, 0]), np.random.default_rng(0), draws=4000)
+    assert means["mrr"] == pytest.approx(0.75, abs=0.02)
+    assert means["ndcg@10"] == pytest.approx((1 + 1 / math.log2(3)) / 2, abs=0.02)
