@@ -1,57 +1,57 @@
 {
-  "day": "2026-11-16",
+  "day": "2026-11-17",
   "model": "cross-encoder/ms-marco-MiniLM-L6-v2, fine-tuned, 3-seed ensemble",
-  "candidates": 482,
+  "candidates": 1125,
   "papers": [
     {
-      "id": "2611.17461",
-      "title": "Tracing Knowledge and Reasoning in LLM",
-      "authors": "Yang Wang, Xiao Wang, Yiqi Liu, Chenghao Xiao, Eleni Vasilaki, Goran Nenadic, Chenghua Lin",
-      "categories": "cs.CL",
-      "abstract": "Current evaluations of Large Language Models (LLMs) report performance at the dataset or task level, revealing what a model achieves but offering little insight into the internal processing associated with its performance. We propose a task-centric framework for characterising the model-internal processing elicited by a benchmark. It combines attention- and activation-based signals with representation-based measures to characterise benchmarks spanning a continuum from retrieval-dominant to reasoning-dominant and to surface failure modes that task-level scores conceal. We evaluate 16 LLMs across 24 diverse benchmarks and conduct targeted internal-state analyses on representative models and tasks, observing systematic differences in processing between knowledge-centric and reasoning-centric tasks. We shift evaluation from asking what score a model achieves toward characterising the processing patterns associated with that score, potentially supporting more targeted benchmark selection and more informed model choice. We open source our code at https://github.com/extraordinarylab/trace-kr.",
-      "published": "2026-11-12T19:39:00Z",
-      "score": 3.419502019882202,
-      "url": "https://arxiv.org/abs/2611.17461"
+      "id": "2611.19061",
+      "title": "Large Language Models for AI Infrastructure",
+      "authors": "Bolin Shen, Shaoyi Huang, Yushun Dong",
+      "categories": "cs.AI cs.CL",
+      "abstract": "Large language models (LLMs) are increasingly used to design, optimize, and operate the infrastructure behind AI training and serving, yet the literature remains fragmented across hardware design, machine learning systems, electronic design automation, and high-performance computing. We present a comprehensive survey of LLM-assisted AI infrastructure across its lifecycle, from accelerator design and kernel engineering to compilation, deployment, operations, data management, and energy optimization. We organize the literature by the primary resource the LLM manages: artifact-centric methods for computational artifacts, operational-centric methods for deployment context and system state, and resource-centric methods for data and energy. These categories span the lifecycle and cover AI-specific concerns such as distributed-training configuration, inference serving, GPU-cluster scheduling, and data loading. Building on this taxonomy, we conduct a cross-study quantitative synthesis of reported results. Because studies adopt heterogeneous benchmarks, baselines, hardware, and metrics, we compare methods only where evaluation conditions permit and align results along common dimensions: functional correctness, execution performance, throughput, resource and energy consumption, operational outcomes, and optimization cost, keeping each result's native metric, baseline, and setting rather than collapsing them into a single score. This comparison reveals where LLM-driven methods yield consistent gains, how reported gains in workload orchestration depend on the evaluation environment, from simulators to real clusters and production, and where evidence is still lacking. Together, the taxonomy, lifecycle perspective, and quantitative evaluation provide an evidence-grounded reference for LLM-driven engineering of AI infrastructure.",
+      "published": "2026-11-14T01:12:36Z",
+      "score": 3.4124863147735596,
+      "url": "https://arxiv.org/abs/2611.19061"
     },
     {
-      "id": "2611.18504",
-      "title": "Agentic AI for Discovering Fault-Tolerant Quantum Circuits",
-      "authors": "Aritra Lahiri, Florian Marquardt",
-      "categories": "quant-ph cs.AI",
-      "abstract": "Scaling quantum computing toward practical quantum advantage is currently limited by the efficiency of circuits that operate on information encoded by quantum error-correcting codes. The full stack of quantum computing encompasses several tasks: preparation of logical code states, implementation of logical gates, logical routines on encoded qubits, etc. Yet, these circuits are largely designed by hand for individual cases, with some recent works incorporating machine learning for certain aspects. We formulate this problem as agentic evolutionary program synthesis, wherein a large language model, leveraging its pretraining knowledge and tool-use proficiency, and guided by a circuit verifier, evolves a program that defines a Clifford circuit for a wide range of curated tasks such as logical state preparation, logical gate design, and logical routines such as code-switching, code growth, etc. Our approach consistently finds fault-tolerant circuits for all of these tasks, each verified by an exhaustive check over faults.",
-      "published": "2026-11-13T18:20:23Z",
-      "score": 2.7822744846343994,
-      "url": "https://arxiv.org/abs/2611.18504"
+      "id": "2611.20551",
+      "title": "GranularGPT: Natural-Language-Driven End-to-End Discrete Element Method Simulations",
+      "authors": "Erlei Li, Sirui Tang, Ai Wang, Mingwei Hu, Yuchen Dai, Geoff Wang",
+      "categories": "physics.comp-ph cs.AI",
+      "abstract": "Discrete element method (DEM) simulations are widely used to investigate granular and particulate systems, but their application often requires specialized expertise in particle physics, numerical modelling, and simulation post-processing. Large language models (LLMs) offer new opportunities to simplify these workflows by enabling users to interact with simulation tools through natural language. This study offers GranularGPT, an LLM-assisted agentic framework for end-to-end DEM simulation workflows, from natural-language problem descriptions to simulation execution and automated post-processing. The framework enables users to generate DEM simulation cases, execute and monitor simulations, and automatically extract and report physical and process-level metrics. Evaluation across 60 normal-condition cases covering 12 DEM scenarios and parameter variations achieve a simulation success rate of 91.7%. In the error-handling evaluation, all 10 repairable errors are detected and 9 are successfully resolved, while all 5 non-repairable cases are correctly identified and reported. The framework automatically extracts a range of DEM-relevant metrics, including particle size distributions, packing and density measures, velocity profiles, discharge rates, mixing indices, contact force characteristics, and thermal quantities. GranularGPT provides a foundation for improving the accessibility and efficiency of DEM simulation workflows while reducing the specialized expertise required for their operation.",
+      "published": "2026-11-16T05:30:20Z",
+      "score": 3.2717201709747314,
+      "url": "https://arxiv.org/abs/2611.20551"
     },
     {
-      "id": "2611.18164",
-      "title": "Detection and Classification in Latent Spaces: High-Dimensional Analysis and Validation",
-      "authors": "Enis Chenchene, Anil S. Baslamisli, Paolo Braca",
-      "categories": "stat.ML cs.LG",
-      "abstract": "Foundation models produce high-dimensional latent representations in which suitably designed statistical decision rules can be effective yet analytically tractable. We study such detectors in the high-dimensional regime, where latent dimension and training sample size grow proportionally. For linear and quadratic statistics, we derive explicit large-deviation characterizations of false-alarm and miss-detection performance under the Neyman-Pearson paradigm, and show how the binary analysis extends to multi-class classification. The resulting error probabilities and corresponding decay rates exhibit non-monotonic dependence on the shape parameter, including double-descent and, in some regimes, multiple-descent. Experiments on vision, text, and audio datasets using modern foundation models show close agreement between theoretical predictions and empirical performance. In particular, the proposed framework allows us to set a prescribed false-alarm level and accurately predict the corresponding miss-detection probability. Overall, our results provide a theoretically grounded and interpretable framework with competitive empirical performance across different modalities.",
-      "published": "2026-11-13T13:39:28Z",
-      "score": 1.727423071861267,
-      "url": "https://arxiv.org/abs/2611.18164"
+      "id": "2611.21176",
+      "title": "Scientific Coding with Large Language Models: Evidence from Finite Element Analysis",
+      "authors": "Erfan Hamdi, Joel Shor, Emma Lejeune",
+      "categories": "cs.SE cs.AI cs.CE",
+      "abstract": "Large language models (LLMs) offer a potential route to automating scientific programming, but their usefulness depends on consistently producing numerically correct code. We extend FEM-Bench to 17 finite element tasks involving nonlinear and history-dependent mechanics and structural dynamics, and evaluate 15 models on implementation and test generation without execution feedback. The best model succeeds in 87.1% of single-pass implementation trials, but rankings differ between tracks. The leading implementer achieves 49.9% joint test success, while the leading tester reaches 82.6%. For six models, we compare single-pass generation with two agentic harnesses that allow code execution and revision. Agentic execution solves some tasks that never succeeded in single-pass trials and improves consistency on others, but gains vary across models and harnesses, and regressions also occur. Claude Opus 5 with SimpleAgent reaches 96.5% Pass@3, the probability of at least one success in three attempts, but 77.1% Pass$^3$, the probability that all three succeed. No model-harness combination exceeds 78.8% Pass$^3$. To understand why agents submit incorrect code after passing their own checks, we analyze 249 failed agentic trajectories and identify six categories of self-verification failure. The most common are inadequate test coverage (73.1%) and reliance on generic consistency checks (70.3%), and in 28.5% of cases the tests share an error with the implementation. Motivated by these findings, an exploratory configuration with separate coder and tester agents achieves the highest observed scores, with 97.6% Pass@3 and 88.8% Pass$^3$. These results identify consistency across attempts and independent verification as the main obstacles to trusting LLM-generated scientific code.",
+      "published": "2026-11-16T14:35:30Z",
+      "score": 2.3707504272460938,
+      "url": "https://arxiv.org/abs/2611.21176"
     },
     {
-      "id": "2611.18453",
-      "title": "Black-Box Uncertainty Quantification for Large Language Models via Ensemble-of-Ensembles",
-      "authors": "Wang Ma, Debarun Bhattacharjya, Junkyu Lee, Nhan H Pham, Harsha Kokel, Qiang Ji",
-      "categories": "cs.LG cs.AI",
-      "abstract": "Reliable use of large language models (LLMs) requires uncertainty estimates that separate ambiguity intrinsic to a prompt from genuine knowledge gaps. Bayesian and deep-ensemble methods deliver this aleatoric/epistemic decomposition in principle, but are computationally prohibitive at LLM scale and require white-box access. Existing black-box methods, in contrast, summarize to a single scalar that cannot make the distinction. We introduce a two-level ensemble that bridges this gap. Stochastic decoding of a fixed prompt forms the inner ensemble; meaning-preserving semantic perturbations of the prompt form the outer ensemble. Variability is measured in a continuous embedding space, and the law of total covariance gives an exact within-/between-perturbation decomposition to estimate aleatoric and epistemic uncertainty (AU/EU); it requires only black-box sampling access. On top of this estimator, we contribute three theoretical results that ground the framework: (i) a finite-sample bias identity for nested Monte Carlo with a closed-form bias-corrected epistemic estimator; (ii) a Bayesian bridge bounding the gap between perturbation-population AU/EU and Bayesian targets; and (iii) a separation result identifying a class of failure modes that any consistency-only black-box method provably misses while perturbation-based EU detects. Across five short QA benchmarks and four instruction-tuned LLMs spanning two families and two scales, our estimator is competitive with strong white-box baselines, and at a matched generation budget it matches leading black-box methods on error ranking while decomposing AU and EU; controlled paired interventions show that AU and EU respond selectively to distinct, actionable sources of failure: prompt ambiguity and model knowledge gaps; and a long-form pilot on the NQ long-answer split shows the framework extends to claim-level factuality without retraining.",
-      "published": "2026-11-13T17:26:39Z",
-      "score": 1.677394986152649,
-      "url": "https://arxiv.org/abs/2611.18453"
+      "id": "2611.21299",
+      "title": "Turing Agent: Agentic Formal Verification for Mathematical Research",
+      "authors": "Yang Chen, Qianyi Wang, Ronghui Yang, Zhanhao Li, Yu Cong, Chen Zhang, Hangfan Zhang, Shao Zhang, Shuai Li, Toru Takisaka, Chao Xu, Yi Zhou, Zhihao Tang, Xiao Wang, Bo Zhang, Shuyue Hu",
+      "categories": "cs.AI",
+      "abstract": "Large language models (LLMs) are rapidly advancing mathematical discovery, moving beyond benchmark-level problem solving to tackle frontier research problems. This progress is ushering mathematics into an era of proof abundance, raising a fundamental challenge: how can we ensure the correctness of the ever-growing volume of AI-generated proofs and transform them into trustworthy, machine-verified mathematical knowledge? We introduce Turing Agent, an agent harness designed to orchestrate end-to-end formal verification of research-level mathematics. Its wo-scale architecture integrates theorem formalization and proof formalization agents, empowered by structured proof decomposition, parallel verification, accumulated proof experience, and selective semantic review. Leveraging our collaborations with theoretical computer science (TCS) researchers, we focus our evaluation on TCS, a particularly demanding domain characterized by intricate quantification, complex dependencies, and stringent semantic requirements. Against direct generation and general-purpose coding harnesses, including Codex CLI and Claude Code, Turing Agent achieves approximately 57-62% faithful formalization success on Formal TCS Bench and 83% overall pass@1 on a TCS-focused subset of RLMEval, using GLM-5.3 and DeepSeek-V4-Pro. Notably, Turing Agent, built on DeepSeek, successfully completes the formal verification of three previously unresolved TCS tasks from OpenAI's October 2026 collection. One particularly challenging TCS problem required about a hundred formally verified auxiliary claims. Moreover, by actively exploring and refining the formalization process, Turing Agent can uncover simpler alternative proofs, expose unnecessary dependencies in original proofs, and generate reusable mathematical knowledge as a byproduct of verification.",
+      "published": "2026-11-16T16:02:37Z",
+      "score": 2.3256516456604004,
+      "url": "https://arxiv.org/abs/2611.21299"
     },
     {
-      "id": "2611.17559",
-      "title": "Unsupervised learning reveals a small number of galaxy formation pathways in IllustrisTNG",
-      "authors": "C. Alvarez-Fernandez, H. Dominguez Sanchez, J. Vega-Ferrero, E. Angeloudi, A. Ferre-Mateu, D. Sotillo-Ramos",
-      "categories": "astro-ph.GA",
-      "abstract": "Understanding the main drivers of galaxy formation and the connection between observable properties and evolutionary pathways is a central goal of extragalactic astronomy. Observations provide single-epoch snapshots of galaxies at different stages of their development, whereas cosmological simulations allow us to trace the full formation histories of individual systems within a theoretical framework. Extracting information from these datasets remains challenging. Our aim is to use machine-learning techniques to unveil physical properties from the simulation datasets. We apply two unsupervised ML techniques, dimensionality reduction and clustering, to identify galaxy evolution key parameters. We use UMAP as our dimensionality reduction tool and k-means as our clustering method. We perform dimensionality reduction on the star formation histories (SFHs) of a sample of aproximately 10000 galaxies drawn from the TNG50 and TNG100 simulations. The resulting representation of the SFHs in a two-dimensional UMAP space reveals a clear ordering of galaxy mass assembly histories, separating quenched and star-forming systems, as well as galaxies with significant ex situ stellar mass contributions. Galaxy properties from simulation catalogs that are not used in the dimensionality reduction show correlations across the UMAP plane. Furthermore, using a k-means clustering analysis, we identify six groups of galaxies with distinct evolutionary histories. These groups show systematic differences in stellar mass, morphology, angular momentum, star formation activity, and merger history, and occupy different regions of the SFR-mass and mass-size planes. Our results indicate that the diversity of galaxy formation histories in IllustrisTNG can be organized into a small number of characteristic evolutionary pathways linking galaxy accretion histories and present-day structural and star-forming properties.",
-      "published": "2026-11-12T22:27:22Z",
-      "score": 1.6614576578140259,
-      "url": "https://arxiv.org/abs/2611.17559"
+      "id": "2611.20255",
+      "title": "Deep Sequence Model for Genome Wide Discovery of Coding and Regulatory Element Signatures",
+      "authors": "Rayhaneh Shabani Nia, Ali Karkehabadi",
+      "categories": "cs.LG q-bio.GN",
+      "abstract": "Interpreting deep neural networks for genomic sequence classification remains challenging despite strong predictive performance. We develop a lightweight CNN with post-training gradient-based analysis to identify which sequence positions drive coding versus intergenomic classification. Applied to the standardized demo_coding_vs_intergenomic_seqs dataset, our model achieves 91.87% validation accuracy while revealing interpretable patterns: nine hot spots with consistently high importance, clear class-specific separation at positions 20-100 (coding) and 150-190 (intergenomic), and a strong mean-variance correlation (r = 0.530) indicating robust discriminative features. Gradient-based importance analysis shows that the model implicitly learns biologically meaningful sequence distinctions without explicit annotations. This work demonstrates that neural network interpretability and accuracy can coexist, providing a framework for understanding genomic sequence classification and enabling biology-driven hypothesis generation.",
+      "published": "2026-11-15T21:20:49Z",
+      "score": 2.1993346214294434,
+      "url": "https://arxiv.org/abs/2611.20255"
     }
   ]
 }
