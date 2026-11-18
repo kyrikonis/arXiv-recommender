@@ -1,0 +1,57 @@
+{
+  "day": "2026-11-18",
+  "model": "cross-encoder/ms-marco-MiniLM-L6-v2, fine-tuned, 3-seed ensemble",
+  "candidates": 663,
+  "papers": [
+    {
+      "id": "2611.22975",
+      "title": "Large Language Models Have Not Yet Transformed Science",
+      "authors": "Ron Bekkerman, Nichole Li, Bahareh Kargar, Mark Somers",
+      "categories": "cs.CL cs.AI cs.CY cs.DL",
+      "abstract": "The emergence of large language models (LLMs) in late 2022 has raised questions about the future of science, but assessing their impact requires understanding how scientific practices were already evolving. We analyze 2.5 million full-text papers across five disciplines from 2015 to 2025, tracing trends over a broad spectrum of lexical, structural, epistemological, and social dimensions. Aside from frequency shifts in some words, most pre-2023 trends continued with limited detectable breaks. Among the notable exceptions, growth in computer science coauthor teams accelerated significantly in Asia, while apparent declines in biomedical topic diversity largely reflected standardization in article formats. Our study establishes an empirical foundation for monitoring the health of global science as LLM adoption deepens.",
+      "published": "2026-11-17T15:57:22Z",
+      "score": 3.4356849193573,
+      "url": "https://arxiv.org/abs/2611.22975"
+    },
+    {
+      "id": "2611.23106",
+      "title": "Natural Language Programming: Rethinking Language, Memory, and Cognition in the Era of Generative AI",
+      "authors": "Giovanni Adorni, Daniele Grosso",
+      "categories": "cs.CL cs.AI",
+      "abstract": "Generative Artificial Intelligence is transforming the role of natural language in computational systems. In classical Natural Language Processing (NLP), language was treated as an object of computation: something to analyse, classify, translate, or generate. Large Language Models (LLMs) challenge this perspective, enabling natural language to function increasingly as an executable cognitive medium through which humans structure reasoning, orchestrate problem solving, and regulate hybrid human/AI workflows. This paper introduces Natural Language Programming (NLPg) as a theoretical and epistemological extension of traditional NLP. Rather than focusing on language understanding alone, NLPg conceptualises prompts as dynamic cognitive artefacts that externalise goals, constraints, assumptions, validation criteria, and intermediate reasoning states. Prompting is thus not merely a technical interaction technique, but a form of dialogic cognitive programming operating within distributed human/AI memory architectures. Building on theories of distributed cognition, extended mind, metacognition, and dialogic learning, the paper proposes the notion of Dialogic Working Memory, describing how prompts and conversational states function as temporary external memory structures supporting reasoning continuity and reflective regulation. We further map existing memory architectures (BTMA, SKGE, RMR) onto this framework, illustrating how episodic, semantic, and metacognitive layers support long-horizon conversational coherence. Finally, implications for computational linguistics and AI/mediated knowledge systems are discussed, suggesting a post symbolic and post interface paradigm in which natural language operates simultaneously as communication medium, executable specification, cognitive scaffold, and distributed memory architecture.",
+      "published": "2026-11-17T17:27:01Z",
+      "score": 3.338777542114258,
+      "url": "https://arxiv.org/abs/2611.23106"
+    },
+    {
+      "id": "2611.21964",
+      "title": "Solver to System: LLM Reasoning Across Representations and Execution in Scientific Simulation",
+      "authors": "Eliza Berman, Rohan Subramanian, Shreya Jha, Lohit Jagarapu, Romain Lopez, Rajesh Ranganath",
+      "categories": "cs.LG cs.CL",
+      "abstract": "Simulators based on partial differential equations (PDEs) are widely used to model physical systems, but generating and interpreting PDE solver code with large language models (LLMs) remains challenging. Scientific simulation code is a useful testbed for LLM scientific reasoning because (1) one system can be represented by code, equations, natural language, and numerical trajectories and (2) code can execute successfully while implementing invalid physics. We introduce Solver2System, a dataset of PDE solvers with multiple representations, controlled corruptions, and lexical perturbations, to evaluate whether LLMs can recover the underlying physical system through (1) cross-representation consistency and (2) static and agentic detection of physical invalidity. Across eight open-weight models, LLMs systematically favor some representations when evidence conflicts, and lexical perturbations to code alter interpretation of other unchanged representations. Execution improves physical-validity judgments, but weaker agents can judge correctly without identifying the causal defect. Thus, LLMs may reach correct judgments despite inconsistent representation reconciliation or causal misdiagnosis.",
+      "published": "2026-11-16T22:47:37Z",
+      "score": 2.5906059741973877,
+      "url": "https://arxiv.org/abs/2611.21964"
+    },
+    {
+      "id": "2611.21983",
+      "title": "Large Language Models as Nonlinear Dynamical Systems: The Three Clocks of Depth, Training, and Generation",
+      "authors": "Maor Farid",
+      "categories": "cs.LG cs.CL math.DS nlin.CD",
+      "abstract": "Language models are dynamical systems. A transformer is iterated over its layers, over the steps of its training and over the tokens it generates, and on each of these three clocks it shows behavior that nonlinear dynamics has studied for a century: fixed points, bifurcations, synchronization, chaos and noise-driven escape from potential wells. The two communities rarely meet, so this behavior is often rediscovered under new names. We build a bridge between them. To describe, we condense about 200 papers into the Three-Clock Dictionary, which maps fifteen concepts of nonlinear dynamics onto each clock and marks every correspondence as proved, measured or conjectured, and we show each concept in a mechanical system and in a language model side by side. To explain, we derive reduced-order models: the softmax is a Boltzmann distribution, gradient descent an Euler step on a nonlinear spring, a loss spike a ball thrown out of a stiff valley, attention on the circle a Kuramoto model, and a repetition loop a well that deepens while it is occupied. We then test these explanations on open language models, on a laptop CPU. Escape from repetition loops in GPT-2 and Pythia follows the Arrhenius law with the logit gap as the barrier, and the barrier deepens and then saturates, so the temperature needed to leave a loop falls like $1/\\ln N$ with the generation length $N$ and rises with model size. Coherent text lives in a narrow window of temperatures, which a small reasoning model shares at its recommended temperature. Training makes each Pythia layer more expansive, and a small transformer trains at a multi-mode edge of stability. The third step, solving problems of language models, is still ahead: controllers derived from the escape analysis remove loops but do not yet beat the best fixed temperature. We state twelve open problems where nonlinear dynamics could get there.",
+      "published": "2026-11-16T23:11:52Z",
+      "score": 2.3462536334991455,
+      "url": "https://arxiv.org/abs/2611.21983"
+    },
+    {
+      "id": "2611.22670",
+      "title": "Worldviews in Large Language Models",
+      "authors": "Edmundo Lopez-Sola, Shamil Chandaria, Ruben Laukkonen",
+      "categories": "cs.AI cs.CY",
+      "abstract": "Large language models (LLMs) are often described in terms of personas and this framing has become central to alignment research. In this paper, we argue that there is a deeper level of description that lies in the agent's worldviews, i.e., its beliefs about what reality is and how it works. Treating LLMs as a population of subjects, we administer two worldview surveys from human psychology to eight models. We show that the models share many key worldview positions. For example, LLMs consistently describe the world as less good, safe, enticing, and alive than humans do. On the other hand, base models have a more positive outlook, suggesting that the bleakness we found is driven by post-training. In line with research on LLM \"personas\", we show that system prompts eliciting different identities shift worldviews in consistent directions, and that a contemplative prompt creates a more positive outlook and improves safety. We also found that dialogue between models consistently shifts worldviews and that several models converge on the \"spiritual bliss\" attractor. Intriguingly, dialogue increased safe responses and the spiritual bliss attractor engendered the most aligned responses overall. These findings suggest that worldviews form a measurable and malleable layer of LLM behavior that may be crucial for robust, positive alignment.",
+      "published": "2026-11-17T12:24:19Z",
+      "score": 2.166156768798828,
+      "url": "https://arxiv.org/abs/2611.22670"
+    }
+  ]
+}

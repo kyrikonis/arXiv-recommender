@@ -1,57 +1,57 @@
 {
-  "day": "2026-11-17",
+  "day": "2026-11-18",
   "model": "cross-encoder/ms-marco-MiniLM-L6-v2, fine-tuned, 3-seed ensemble",
-  "candidates": 1125,
+  "candidates": 663,
   "papers": [
     {
-      "id": "2611.19061",
-      "title": "Large Language Models for AI Infrastructure",
-      "authors": "Bolin Shen, Shaoyi Huang, Yushun Dong",
-      "categories": "cs.AI cs.CL",
-      "abstract": "Large language models (LLMs) are increasingly used to design, optimize, and operate the infrastructure behind AI training and serving, yet the literature remains fragmented across hardware design, machine learning systems, electronic design automation, and high-performance computing. We present a comprehensive survey of LLM-assisted AI infrastructure across its lifecycle, from accelerator design and kernel engineering to compilation, deployment, operations, data management, and energy optimization. We organize the literature by the primary resource the LLM manages: artifact-centric methods for computational artifacts, operational-centric methods for deployment context and system state, and resource-centric methods for data and energy. These categories span the lifecycle and cover AI-specific concerns such as distributed-training configuration, inference serving, GPU-cluster scheduling, and data loading. Building on this taxonomy, we conduct a cross-study quantitative synthesis of reported results. Because studies adopt heterogeneous benchmarks, baselines, hardware, and metrics, we compare methods only where evaluation conditions permit and align results along common dimensions: functional correctness, execution performance, throughput, resource and energy consumption, operational outcomes, and optimization cost, keeping each result's native metric, baseline, and setting rather than collapsing them into a single score. This comparison reveals where LLM-driven methods yield consistent gains, how reported gains in workload orchestration depend on the evaluation environment, from simulators to real clusters and production, and where evidence is still lacking. Together, the taxonomy, lifecycle perspective, and quantitative evaluation provide an evidence-grounded reference for LLM-driven engineering of AI infrastructure.",
-      "published": "2026-11-14T01:12:36Z",
-      "score": 3.4124863147735596,
-      "url": "https://arxiv.org/abs/2611.19061"
+      "id": "2611.22975",
+      "title": "Large Language Models Have Not Yet Transformed Science",
+      "authors": "Ron Bekkerman, Nichole Li, Bahareh Kargar, Mark Somers",
+      "categories": "cs.CL cs.AI cs.CY cs.DL",
+      "abstract": "The emergence of large language models (LLMs) in late 2022 has raised questions about the future of science, but assessing their impact requires understanding how scientific practices were already evolving. We analyze 2.5 million full-text papers across five disciplines from 2015 to 2025, tracing trends over a broad spectrum of lexical, structural, epistemological, and social dimensions. Aside from frequency shifts in some words, most pre-2023 trends continued with limited detectable breaks. Among the notable exceptions, growth in computer science coauthor teams accelerated significantly in Asia, while apparent declines in biomedical topic diversity largely reflected standardization in article formats. Our study establishes an empirical foundation for monitoring the health of global science as LLM adoption deepens.",
+      "published": "2026-11-17T15:57:22Z",
+      "score": 3.4356849193573,
+      "url": "https://arxiv.org/abs/2611.22975"
     },
     {
-      "id": "2611.20551",
-      "title": "GranularGPT: Natural-Language-Driven End-to-End Discrete Element Method Simulations",
-      "authors": "Erlei Li, Sirui Tang, Ai Wang, Mingwei Hu, Yuchen Dai, Geoff Wang",
-      "categories": "physics.comp-ph cs.AI",
-      "abstract": "Discrete element method (DEM) simulations are widely used to investigate granular and particulate systems, but their application often requires specialized expertise in particle physics, numerical modelling, and simulation post-processing. Large language models (LLMs) offer new opportunities to simplify these workflows by enabling users to interact with simulation tools through natural language. This study offers GranularGPT, an LLM-assisted agentic framework for end-to-end DEM simulation workflows, from natural-language problem descriptions to simulation execution and automated post-processing. The framework enables users to generate DEM simulation cases, execute and monitor simulations, and automatically extract and report physical and process-level metrics. Evaluation across 60 normal-condition cases covering 12 DEM scenarios and parameter variations achieve a simulation success rate of 91.7%. In the error-handling evaluation, all 10 repairable errors are detected and 9 are successfully resolved, while all 5 non-repairable cases are correctly identified and reported. The framework automatically extracts a range of DEM-relevant metrics, including particle size distributions, packing and density measures, velocity profiles, discharge rates, mixing indices, contact force characteristics, and thermal quantities. GranularGPT provides a foundation for improving the accessibility and efficiency of DEM simulation workflows while reducing the specialized expertise required for their operation.",
-      "published": "2026-11-16T05:30:20Z",
-      "score": 3.2717201709747314,
-      "url": "https://arxiv.org/abs/2611.20551"
+      "id": "2611.23106",
+      "title": "Natural Language Programming: Rethinking Language, Memory, and Cognition in the Era of Generative AI",
+      "authors": "Giovanni Adorni, Daniele Grosso",
+      "categories": "cs.CL cs.AI",
+      "abstract": "Generative Artificial Intelligence is transforming the role of natural language in computational systems. In classical Natural Language Processing (NLP), language was treated as an object of computation: something to analyse, classify, translate, or generate. Large Language Models (LLMs) challenge this perspective, enabling natural language to function increasingly as an executable cognitive medium through which humans structure reasoning, orchestrate problem solving, and regulate hybrid human/AI workflows. This paper introduces Natural Language Programming (NLPg) as a theoretical and epistemological extension of traditional NLP. Rather than focusing on language understanding alone, NLPg conceptualises prompts as dynamic cognitive artefacts that externalise goals, constraints, assumptions, validation criteria, and intermediate reasoning states. Prompting is thus not merely a technical interaction technique, but a form of dialogic cognitive programming operating within distributed human/AI memory architectures. Building on theories of distributed cognition, extended mind, metacognition, and dialogic learning, the paper proposes the notion of Dialogic Working Memory, describing how prompts and conversational states function as temporary external memory structures supporting reasoning continuity and reflective regulation. We further map existing memory architectures (BTMA, SKGE, RMR) onto this framework, illustrating how episodic, semantic, and metacognitive layers support long-horizon conversational coherence. Finally, implications for computational linguistics and AI/mediated knowledge systems are discussed, suggesting a post symbolic and post interface paradigm in which natural language operates simultaneously as communication medium, executable specification, cognitive scaffold, and distributed memory architecture.",
+      "published": "2026-11-17T17:27:01Z",
+      "score": 3.338777542114258,
+      "url": "https://arxiv.org/abs/2611.23106"
     },
     {
-      "id": "2611.21176",
-      "title": "Scientific Coding with Large Language Models: Evidence from Finite Element Analysis",
-      "authors": "Erfan Hamdi, Joel Shor, Emma Lejeune",
-      "categories": "cs.SE cs.AI cs.CE",
-      "abstract": "Large language models (LLMs) offer a potential route to automating scientific programming, but their usefulness depends on consistently producing numerically correct code. We extend FEM-Bench to 17 finite element tasks involving nonlinear and history-dependent mechanics and structural dynamics, and evaluate 15 models on implementation and test generation without execution feedback. The best model succeeds in 87.1% of single-pass implementation trials, but rankings differ between tracks. The leading implementer achieves 49.9% joint test success, while the leading tester reaches 82.6%. For six models, we compare single-pass generation with two agentic harnesses that allow code execution and revision. Agentic execution solves some tasks that never succeeded in single-pass trials and improves consistency on others, but gains vary across models and harnesses, and regressions also occur. Claude Opus 5 with SimpleAgent reaches 96.5% Pass@3, the probability of at least one success in three attempts, but 77.1% Pass$^3$, the probability that all three succeed. No model-harness combination exceeds 78.8% Pass$^3$. To understand why agents submit incorrect code after passing their own checks, we analyze 249 failed agentic trajectories and identify six categories of self-verification failure. The most common are inadequate test coverage (73.1%) and reliance on generic consistency checks (70.3%), and in 28.5% of cases the tests share an error with the implementation. Motivated by these findings, an exploratory configuration with separate coder and tester agents achieves the highest observed scores, with 97.6% Pass@3 and 88.8% Pass$^3$. These results identify consistency across attempts and independent verification as the main obstacles to trusting LLM-generated scientific code.",
-      "published": "2026-11-16T14:35:30Z",
-      "score": 2.3707504272460938,
-      "url": "https://arxiv.org/abs/2611.21176"
+      "id": "2611.21964",
+      "title": "Solver to System: LLM Reasoning Across Representations and Execution in Scientific Simulation",
+      "authors": "Eliza Berman, Rohan Subramanian, Shreya Jha, Lohit Jagarapu, Romain Lopez, Rajesh Ranganath",
+      "categories": "cs.LG cs.CL",
+      "abstract": "Simulators based on partial differential equations (PDEs) are widely used to model physical systems, but generating and interpreting PDE solver code with large language models (LLMs) remains challenging. Scientific simulation code is a useful testbed for LLM scientific reasoning because (1) one system can be represented by code, equations, natural language, and numerical trajectories and (2) code can execute successfully while implementing invalid physics. We introduce Solver2System, a dataset of PDE solvers with multiple representations, controlled corruptions, and lexical perturbations, to evaluate whether LLMs can recover the underlying physical system through (1) cross-representation consistency and (2) static and agentic detection of physical invalidity. Across eight open-weight models, LLMs systematically favor some representations when evidence conflicts, and lexical perturbations to code alter interpretation of other unchanged representations. Execution improves physical-validity judgments, but weaker agents can judge correctly without identifying the causal defect. Thus, LLMs may reach correct judgments despite inconsistent representation reconciliation or causal misdiagnosis.",
+      "published": "2026-11-16T22:47:37Z",
+      "score": 2.5906059741973877,
+      "url": "https://arxiv.org/abs/2611.21964"
     },
     {
-      "id": "2611.21299",
-      "title": "Turing Agent: Agentic Formal Verification for Mathematical Research",
-      "authors": "Yang Chen, Qianyi Wang, Ronghui Yang, Zhanhao Li, Yu Cong, Chen Zhang, Hangfan Zhang, Shao Zhang, Shuai Li, Toru Takisaka, Chao Xu, Yi Zhou, Zhihao Tang, Xiao Wang, Bo Zhang, Shuyue Hu",
-      "categories": "cs.AI",
-      "abstract": "Large language models (LLMs) are rapidly advancing mathematical discovery, moving beyond benchmark-level problem solving to tackle frontier research problems. This progress is ushering mathematics into an era of proof abundance, raising a fundamental challenge: how can we ensure the correctness of the ever-growing volume of AI-generated proofs and transform them into trustworthy, machine-verified mathematical knowledge? We introduce Turing Agent, an agent harness designed to orchestrate end-to-end formal verification of research-level mathematics. Its wo-scale architecture integrates theorem formalization and proof formalization agents, empowered by structured proof decomposition, parallel verification, accumulated proof experience, and selective semantic review. Leveraging our collaborations with theoretical computer science (TCS) researchers, we focus our evaluation on TCS, a particularly demanding domain characterized by intricate quantification, complex dependencies, and stringent semantic requirements. Against direct generation and general-purpose coding harnesses, including Codex CLI and Claude Code, Turing Agent achieves approximately 57-62% faithful formalization success on Formal TCS Bench and 83% overall pass@1 on a TCS-focused subset of RLMEval, using GLM-5.3 and DeepSeek-V4-Pro. Notably, Turing Agent, built on DeepSeek, successfully completes the formal verification of three previously unresolved TCS tasks from OpenAI's October 2026 collection. One particularly challenging TCS problem required about a hundred formally verified auxiliary claims. Moreover, by actively exploring and refining the formalization process, Turing Agent can uncover simpler alternative proofs, expose unnecessary dependencies in original proofs, and generate reusable mathematical knowledge as a byproduct of verification.",
-      "published": "2026-11-16T16:02:37Z",
-      "score": 2.3256516456604004,
-      "url": "https://arxiv.org/abs/2611.21299"
+      "id": "2611.21983",
+      "title": "Large Language Models as Nonlinear Dynamical Systems: The Three Clocks of Depth, Training, and Generation",
+      "authors": "Maor Farid",
+      "categories": "cs.LG cs.CL math.DS nlin.CD",
+      "abstract": "Language models are dynamical systems. A transformer is iterated over its layers, over the steps of its training and over the tokens it generates, and on each of these three clocks it shows behavior that nonlinear dynamics has studied for a century: fixed points, bifurcations, synchronization, chaos and noise-driven escape from potential wells. The two communities rarely meet, so this behavior is often rediscovered under new names. We build a bridge between them. To describe, we condense about 200 papers into the Three-Clock Dictionary, which maps fifteen concepts of nonlinear dynamics onto each clock and marks every correspondence as proved, measured or conjectured, and we show each concept in a mechanical system and in a language model side by side. To explain, we derive reduced-order models: the softmax is a Boltzmann distribution, gradient descent an Euler step on a nonlinear spring, a loss spike a ball thrown out of a stiff valley, attention on the circle a Kuramoto model, and a repetition loop a well that deepens while it is occupied. We then test these explanations on open language models, on a laptop CPU. Escape from repetition loops in GPT-2 and Pythia follows the Arrhenius law with the logit gap as the barrier, and the barrier deepens and then saturates, so the temperature needed to leave a loop falls like $1/\\ln N$ with the generation length $N$ and rises with model size. Coherent text lives in a narrow window of temperatures, which a small reasoning model shares at its recommended temperature. Training makes each Pythia layer more expansive, and a small transformer trains at a multi-mode edge of stability. The third step, solving problems of language models, is still ahead: controllers derived from the escape analysis remove loops but do not yet beat the best fixed temperature. We state twelve open problems where nonlinear dynamics could get there.",
+      "published": "2026-11-16T23:11:52Z",
+      "score": 2.3462536334991455,
+      "url": "https://arxiv.org/abs/2611.21983"
     },
     {
-      "id": "2611.20255",
-      "title": "Deep Sequence Model for Genome Wide Discovery of Coding and Regulatory Element Signatures",
-      "authors": "Rayhaneh Shabani Nia, Ali Karkehabadi",
-      "categories": "cs.LG q-bio.GN",
-      "abstract": "Interpreting deep neural networks for genomic sequence classification remains challenging despite strong predictive performance. We develop a lightweight CNN with post-training gradient-based analysis to identify which sequence positions drive coding versus intergenomic classification. Applied to the standardized demo_coding_vs_intergenomic_seqs dataset, our model achieves 91.87% validation accuracy while revealing interpretable patterns: nine hot spots with consistently high importance, clear class-specific separation at positions 20-100 (coding) and 150-190 (intergenomic), and a strong mean-variance correlation (r = 0.530) indicating robust discriminative features. Gradient-based importance analysis shows that the model implicitly learns biologically meaningful sequence distinctions without explicit annotations. This work demonstrates that neural network interpretability and accuracy can coexist, providing a framework for understanding genomic sequence classification and enabling biology-driven hypothesis generation.",
-      "published": "2026-11-15T21:20:49Z",
-      "score": 2.1993346214294434,
-      "url": "https://arxiv.org/abs/2611.20255"
+      "id": "2611.22670",
+      "title": "Worldviews in Large Language Models",
+      "authors": "Edmundo Lopez-Sola, Shamil Chandaria, Ruben Laukkonen",
+      "categories": "cs.AI cs.CY",
+      "abstract": "Large language models (LLMs) are often described in terms of personas and this framing has become central to alignment research. In this paper, we argue that there is a deeper level of description that lies in the agent's worldviews, i.e., its beliefs about what reality is and how it works. Treating LLMs as a population of subjects, we administer two worldview surveys from human psychology to eight models. We show that the models share many key worldview positions. For example, LLMs consistently describe the world as less good, safe, enticing, and alive than humans do. On the other hand, base models have a more positive outlook, suggesting that the bleakness we found is driven by post-training. In line with research on LLM \"personas\", we show that system prompts eliciting different identities shift worldviews in consistent directions, and that a contemplative prompt creates a more positive outlook and improves safety. We also found that dialogue between models consistently shifts worldviews and that several models converge on the \"spiritual bliss\" attractor. Intriguingly, dialogue increased safe responses and the spiritual bliss attractor engendered the most aligned responses overall. These findings suggest that worldviews form a measurable and malleable layer of LLM behavior that may be crucial for robust, positive alignment.",
+      "published": "2026-11-17T12:24:19Z",
+      "score": 2.166156768798828,
+      "url": "https://arxiv.org/abs/2611.22670"
     }
   ]
 }
