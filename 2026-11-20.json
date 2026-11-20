@@ -1,0 +1,57 @@
+{
+  "day": "2026-11-20",
+  "model": "cross-encoder/ms-marco-MiniLM-L6-v2, fine-tuned, 3-seed ensemble",
+  "candidates": 686,
+  "papers": [
+    {
+      "id": "2611.25502",
+      "title": "Coordinated Use of Large Language Models in Academic Research",
+      "authors": "Vladislav Marinov",
+      "categories": "cs.AI cs.CY",
+      "abstract": "This study proposes a methodological framework for the coordinated use of multiple large language models in academic research. Its central argument is that involving more models does not in itself guarantee more reliable results; what matters is how cognitive and verification operations are organised. The framework is based on seven principles (procedural independence, functional allocation, the diagnostic value of divergence, the diagnostic value of convergence, external verification, proportionality of checking, and human epistemic responsibility) and sets out a non-linear multi-LLM protocol in which independently obtained results are compared, critically examined and, where necessary, verified against external sources. The approach is illustrated through real-world cases drawn from research practice. The study concludes that moving from a single language model to a coordinated multi-LLM process represents a change in the organisation of research, in which the researcher makes the final decisions and bears scholarly responsibility.",
+      "published": "2026-11-19T04:47:57Z",
+      "score": 3.007840156555176,
+      "url": "https://arxiv.org/abs/2611.25502"
+    },
+    {
+      "id": "2611.25839",
+      "title": "Self-Replicating Language Models",
+      "authors": "Arend Hintze",
+      "categories": "cs.AI",
+      "abstract": "Whether large language models (LLMs) and LLM-based agents are a form of life is a scientifically interesting question. Under the Darwinian definition of life, it is also a practical one, because a system capable of Darwinian Evolution can adapt. We therefore test several modes in which a language model can reproduce itself: by emitting a genome that trains its offspring, by copying and mutating its own weights, and by teaching a child from its own samples. In principle, small language models can replicate and evolve: selection improves them, and they adapt to narrow niches. Selection also lowers mutation rates, and a language model, unlike any organism, can lower its own to zero, which may limit its evolution. Flagship LLMs can write such replicators, but for a large LLM to replicate by teaching its offspring remains, for now, technically and economically infeasible.",
+      "published": "2026-11-19T09:55:02Z",
+      "score": 2.7128565311431885,
+      "url": "https://arxiv.org/abs/2611.25839"
+    },
+    {
+      "id": "2611.25184",
+      "title": "An AI-Powered Multiverse Analysis of Empirical Finance Research: Evidence from Reused Natural Experiments",
+      "authors": "Ruijiang Gao, Steven Chong Xiao",
+      "categories": "cs.AI",
+      "abstract": "Empirical finance research often reuses natural experiments to study other outcomes, raising concerns about multiple testing and publication bias. We use AI agents to run a multiverse analysis of 324 papers that reuse 13 natural experiments. The agents rebuild the data, reproduce each paper's main estimate and re-estimate it across grids totaling 62,409 estimated defensible specifications. Based on the reproductions and the specification grids, we develop measures of empirical robustness. We reproduce 42% of the main estimates of claims with a signed effect under the papers' own specifications. Across all defensible specifications, on average 25% keep the published sign and have $p < 0.10$. Across experiments, claims based on regression discontinuity are more robust than difference-in-differences claims. Within experiments, claims about first-order effects, claims with larger published $t$-statistics, claims whose authors' data or code we find, claims in top journals, and claims with fewer earlier papers on the same experiment are more robust. Claims on experiments that more papers reuse are not less robust on average. Our findings quantify how much published claims depend on analysis choices, thereby showing that large-scale multiverse analysis becomes feasible with agentic coding.",
+      "published": "2026-11-18T21:08:15Z",
+      "score": 2.381852626800537,
+      "url": "https://arxiv.org/abs/2611.25184"
+    },
+    {
+      "id": "2611.25209",
+      "title": "From FAIR to AWARE: Data Readiness for Agentic AI in the Earth Sciences",
+      "authors": "Ivan Kuznetsov, Dmitrii Pantiukhin, Sonja Hänzelmann, Fabian Wachsmann, Jonas Sølvsteen, Daniel Wiesmann, Thomas Jung, Nikolay Koldunov",
+      "categories": "physics.ao-ph cs.AI physics.geo-ph",
+      "abstract": "Artificial intelligence in the Earth sciences is beginning to act: prototype agents already search archives, run simulations and draft analyses. Scientific data were curated for researchers who bring expert judgement; an autonomous agent cannot be assumed to supply it. Data can satisfy the FAIR principles and still mislead a machine acting alone. We propose that Earth-science data become AWARE (Actionable, Well-described, Auditable, Recipe-equipped, Epistemically labelled), an agent-specific requirements layer that extends FAIR, within a three-part agenda: AWARE data, bounded tools, layered validation. The ingredients exist across community infrastructure. We outline a staged, measurable path to adoption, intended to reduce silent error.",
+      "published": "2026-11-18T21:36:17Z",
+      "score": 2.221097707748413,
+      "url": "https://arxiv.org/abs/2611.25209"
+    },
+    {
+      "id": "2611.24959",
+      "title": "ICARE: cross-domain text classification with incremental class-aware representation and distillation learning",
+      "authors": "Son Duong, Truong X. Tran, Hai-Anh Tran",
+      "categories": "cs.CL cs.LG",
+      "abstract": "The rise of powerful, fine-tuned large language models (LLMs) necessitates robust natural language inference (NLI) systems. These NLI systems ideally train across various tasks, encompassing diverse concepts like sentiment analysis, news classification, and coreference resolution. However, this continual, multi-tasking approach can lead to catastrophic forgetting, where previously learned tasks are lost, especially in domains lacking specific labels. Rehearsing past examples with labels can further exacerbate this issue by causing overfitting, hindering the system's ability to classify new categories. To tackle these challenges, this research proposes ICARE, a novel framework with two key components: an instance selection module and a knowledge distillation method. The former is based on representation learning, which meticulously selects training examples to present to the NLI system. The latter, knowledge distillation with feature and logit-level transfer, facilitates knowledge transfer between tasks. This leverages pruning techniques and optimized objective functions to transfer both essential feature-level and decision-making (logit-level) knowledge, mitigating catastrophic forgetting while adapting to new patterns. Extensive evaluations on benchmark text classification datasets have demonstrated ICARE's effectiveness. The framework achieves a significant improvement in target accuracy and reduction in the ``forgetting metric''. These results solidify ICARE's ability to preserve and leverage learned knowledge across diverse tasks, ultimately enhancing the adaptability and performance of NLI systems. The source code is available at https://github.com/CongSon01/ICARE_NLP.git",
+      "published": "2026-11-11T13:42:02Z",
+      "score": 2.1638858318328857,
+      "url": "https://arxiv.org/abs/2611.24959"
+    }
+  ]
+}
